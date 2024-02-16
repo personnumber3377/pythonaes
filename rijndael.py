@@ -69,5 +69,24 @@ def init_table() -> list: # This gets called on import.
         out+= hex_vals
     return out # out should be a flat list of integers now and we just access it by the number.
 
+def split_table(S_BOX: list) -> list:
+    # first split into 4 byte lists.
+    out = [S_BOX[x:x+4] for x in range(0, len(S_BOX),4)]
+    # Now split into 4x4 matrixes.
+    out = [out[x:x+4] for x in range(0, len(out),4)]
+    # Do we need to transpose here????
+    return out
+
+def create_matrix(S_BOX: list) -> list:
+    out = []
+    lines = TABLE_STR.split("\n")
+    for line in lines:
+        hex_vals = line.split("	")
+        hex_vals = [int(x, base=16) for x in hex_vals]
+        out.append(hex_vals)
+    return out # out should be a flat list of integers now and we just access it by the number.
 
 S_BOX = init_table()
+S_BOX_SPLIT = split_table(S_BOX) # This creates the 4x4 matrixes, which we need for encryption and decryption.
+S_BOX_MATRIX = create_matrix(S_BOX) # This is the 2D matrix form
+
