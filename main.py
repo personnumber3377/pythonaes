@@ -246,14 +246,17 @@ def MixColumns(input_matrix: list) -> list:
 	out = transpose_mat(out)
 	return out
 
-def AddRoundKey(input_mat: list, i: int) -> list:
-	subkey = get_key_matrix(i)
+def AddRoundKey(input_mat: list, i: int, W: list) -> list:
+	subkey = get_key_matrix(i, W)
+	print("subkey == "+str(subkey))
 	input_mat = mat_xor(input_mat, subkey)
 	return input_mat
 
-def get_key_matrix(i: int) -> list:
+def get_key_matrix(i: int, W: list) -> list:
 	# This get's the correct 4x4 matrix from the expanded key.
-	return rijndael.S_BOX_SPLIT[i]
+	cor_key_thing = W[i]
+	return cor_key_thing
+	#return rijndael.S_BOX_SPLIT[i]
 
 def BoundsCheck(state: list) -> list:
 	for i in range(len(state)):
@@ -261,13 +264,13 @@ def BoundsCheck(state: list) -> list:
 			state[i][j] &= 0xff
 	return state
 
-def encrypt_state(expanded_key: list, plaintext: bytes, num_rounds: int) -> bytes:
+def encrypt_state(expanded_key: list, plaintext: bytes, num_rounds: int, W_list: list) -> bytes:
 	state = create_state(plaintext)
 	# Initial round key addition:
 	print("Here is the expanded key: "+str(expanded_key))
 	print("Here is the length of the key: "+str(len(expanded_key)))
 	print("round[0].input : "+str(print_hex(state)))
-	state = AddRoundKey(state, 0)
+	state = AddRoundKey(state, 0, W_list)
 	print("round[0].k_sch : "+str(print_hex(expanded_key)))
 	# 9, 11 or 13 rounds:
 	for i in range(1,num_rounds-1):
@@ -279,12 +282,12 @@ def encrypt_state(expanded_key: list, plaintext: bytes, num_rounds: int) -> byte
 		state = MixColumns(state)
 		print("round["+str(i)+"].m_col == "+str(print_hex(state)))
 		state = BoundsCheck(state) # This here to bounds check every element to the inclusive range 0-255 .
-		state = AddRoundKey(state, i)
+		state = AddRoundKey(state, i, W_list)
 		print("round["+str(i)+"].k_sch == "+str(print_hex(state)))
 	# Final round (making 10, 12 or 14 rounds in total):
 	state = SubBytes(state)
 	state = ShiftRows(state)
-	state = AddRoundKey(state, num_rounds-1)
+	state = AddRoundKey(state, num_rounds-1, W_list)
 	state = BoundsCheck(state)
 	return state
 
@@ -304,7 +307,7 @@ def main():
 	print("Here is the key: "+str(key))
 	#key = bytes.fromhex("004488cc115599dd2266aaee3377bbff")
 	num_rounds, expanded_key = key_expansion(key, "128")
-	encrypted = encrypt_state(expanded_key, example_plaintext, num_rounds)
+	encrypted = encrypt_state(expanded_key, example_plaintext, num_rounds, expanded_key)
 	print(encrypted)
 	print("Done!")
 	return 0
