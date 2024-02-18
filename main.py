@@ -82,6 +82,17 @@ def splice_K(encryption_key: bytes) -> list:
 	return [encryption_key[x:x+4] for x in range(0, len(encryption_key),4)]
 
 
+def make_integer_list(W_list: list) -> list:
+	out = []
+	for mat in W_list:
+		# First convert the bytes lists to integers.
+		int_mat = [[x for x in b] for b in mat]
+		print(int_mat)
+		# Now transpose, because the numbers are the wrong way around.
+		int_mat = transpose_mat(int_mat)
+		out.append(int_mat)
+	return out
+
 def key_expansion(encryption_key: bytes, AES_version: str):
 	# Thanks wikipedia https://en.wikipedia.org/wiki/AES_key_schedule  !!!
 	#if len(encryption_key) != 16:
@@ -109,7 +120,8 @@ def key_expansion(encryption_key: bytes, AES_version: str):
 	#print("length of W_list: "+str(len(W_list)))
 	# This cuts the matrix into 4x4 matrixes.
 	W_list = [W_list[x:x+4] for x in range(0, len(W_list),4)]
-	return R, W_list
+	W_actual = make_integer_list(W_list)
+	return R, W_actual
 
 
 # Thanks to https://stackoverflow.com/questions/952914/how-do-i-make-a-flat-list-out-of-a-list-of-lists
@@ -123,7 +135,24 @@ def flatten(items):
 			yield x
 
 def print_hex(byte_list: bytes) -> None:
+	# print("byte_list == "+str(byte_list))
+	# Check if the matrix is a 4x4 state.
+	if len(byte_list) == 4 and len(byte_list[0]) == 4 and isinstance(byte_list[0][0], int):
+		# Now transpose, because the state is a 4x4 matrix.
+		'''
+		[[b0,b4,b8,b12],
+		[b1,b5,b9,b13],
+		[b2,b6,b10,b14],
+		[b3,b7,b11,b15]]
+		'''
+
+		byte_list = transpose_mat(byte_list)
+
 	flattened_list = list(flatten(byte_list))
+	print("length of flattened_list : "+str(len(flattened_list)))
+	print("Here is the flattened list: "+str(flattened_list))
+	print("flattened_list[0] == "+str(flattened_list[0]))
+	#assert len(flattened_list) == 4*4
 	#print("="*30)
 	out = ""
 	#print(flattened_list)
@@ -131,11 +160,13 @@ def print_hex(byte_list: bytes) -> None:
 		#print("x == "+str(x))
 		#print(hex(int.from_bytes(x, byteorder='big')))
 		if isinstance(x, bytes):
-			oof = hex(int.from_bytes(x))[2:]
-			if len(oof) == 1:
-				oof = "0"+oof
-			
-			out += oof
+			for b in x:
+				print("b == "+str(b))
+				oof = hex(b)[2:]
+				if len(oof) == 1:
+					oof = "0"+oof
+				print("oof == "+str(oof))
+				out += oof
 		else:
 			#out += hex(x)[2:]
 			oof = hex(x)[2:]
@@ -182,21 +213,40 @@ def SubBytes(input_matrix: list) -> list:
 			input_matrix[i][j] = rijndael.S_BOX_MATRIX[ind_y][ind_x]
 	return input_matrix
 
-def shift_row_once(row: list) -> list:
-	out = [row[i] for i in range(1,len(row))] + [row[0]]
+def InvSubBytes(input_matrix: list) -> list:
+	# Reverse of SubBytes.
+	return
+
+def shift_row_once(row: list, reverse=False) -> list:
+	if not reverse:
+		out = [row[i] for i in range(1,len(row))] + [row[0]]
+	else:
+		out = [row[-1]] + [row[i] for i in range(0,len(row)-1)]
 	return out
 
-def shift_row(row: list, n: int) -> list: # This shifts one singular line by n indexes.
+def shift_row(row: list, n: int, reverse=False) -> list: # This shifts one singular line by n indexes.
 	for i in range(n):
-		row = shift_row_once(row)
+		row = shift_row_once(row, reverse=reverse)
 	return row
 
 def ShiftRows(input_mat: list) -> list:
 	assert len(input_mat) == 4
 	assert len(input_mat[0]) == 4
+	print("input_mat[1] == "+str(input_mat[1]))
 	input_mat[1] = shift_row(input_mat[1], 1)
-	input_mat[2] = shift_row(input_mat[1], 2)
-	input_mat[3] = shift_row(input_mat[1], 3)
+	print("after: "+str(input_mat[1]))
+	input_mat[2] = shift_row(input_mat[2], 2)
+	input_mat[3] = shift_row(input_mat[3], 3)
+	return input_mat
+
+def InvShiftRows(input_mat: list) -> list:
+
+	assert len(input_mat) == 4
+	assert len(input_mat[0]) == 4
+	input_mat[1] = shift_row(input_mat[1], 1, reverse=True)
+	input_mat[2] = shift_row(input_mat[2], 2, reverse=True)
+	input_mat[3] = shift_row(input_mat[3], 3, reverse=True)
+
 	return input_mat
 
 def mat_xor(mat1: list, mat2: list) -> list:
@@ -206,13 +256,47 @@ def mat_xor(mat1: list, mat2: list) -> list:
 			out[i][j] = out[i][j] ^ mat1[i][j]
 	return out
 
-def multiply_vec_mat(vec: list, mat: list) -> list:
+'''
+def multiply_vec_mat_polynomial(vec: list, mat: list) -> list: # This is matrix multiplication, but with polynomial.
 	out = []
 	for i in range(len(mat)):
 		cur_line = mat[i]
 		assert len(cur_line) == len(vec)
-		out.append(sum(cur_line[i]*vec[i] for i in range(len(vec))))
+		#out.append(sum(cur_line[i]*vec[i] for i in range(len(vec))))
+		# But it’s a slight trickier matrix multiplication, as the sum operation is substituted by xor and multiplication for and.
+		oof = [cur_line[i]&vec[i] for i in range(len(vec))] # https://medium.com/quick-code/understanding-the-advanced-encryption-standard-7d7884277e7
+		res = 0
+		for elem in oof:
+			res ^= elem
+		out.append(res)
 	return out
+'''
+
+def mix_col(r: list) -> list:
+	a = [0,0,0,0]
+	b = [0,0,0,0]
+	print("r original: "+str(r))
+	assert all([r[i] <=255 for i in range(len(r))])
+	for c in range(4):
+		a[c] = r[c]
+		h = r[c] >> 7
+		b[c] = r[c] << 1
+		print("b[c] == "+str(b[c]))
+		print("h * 0x1B + 0x100 == "+str(hex(h * 0x1B + 0x100)))
+		b[c] ^= h * 0x1B
+		b[c] &= 0xff # This must be here, because in c code if we try to shift 0x80 << 1 , then it will go to zero, but not in python, so we need to clamp manually.
+		print("b[c] final == "+str(b[c]))
+	assert all([a[c] == r[c] for c in range(len(r))])
+	r[0] = b[0] ^ a[3] ^ a[2] ^ b[1] ^ a[1]#; /* 2 * a0 + a3 + a2 + 3 * a1 */
+	r[1] = b[1] ^ a[0] ^ a[3] ^ b[2] ^ a[2]#; /* 2 * a1 + a0 + a3 + 3 * a2 */
+	r[2] = b[2] ^ a[1] ^ a[0] ^ b[3] ^ a[3]#; /* 2 * a2 + a1 + a0 + 3 * a3 */
+	r[3] = b[3] ^ a[2] ^ a[1] ^ b[0] ^ a[0]#; /* 2 * a3 + a2 + a1 + 3 * a0 */
+	print("r == "+str(r))
+	assert all([r[i] <=255 for i in range(len(r))])
+	return r
+
+def byte_check(int_list: list) -> list:
+	return [x & 0xff for x in int_list]
 
 def mix_one_column(in_list: list) -> list:
 	'''
@@ -222,16 +306,15 @@ def mix_one_column(in_list: list) -> list:
 	[1,1,2,3],
 	[3,1,1,2]]
 	'''
-	mix_mat = [[2,3,1,1],
-	[1,2,3,1],
-	[1,1,2,3],
-	[3,1,1,2]]
 
-	out = multiply_vec_mat(in_list, mix_mat)
+	out = mix_col(in_list)
 	return out
 
 
 def transpose_mat(input_mat: list) -> list:
+	# The matrixes which are inputted to this function should be 4x4 matrixes.
+	assert len(input_mat) == 4
+	assert len(input_mat[0]) == 4
 	out = copy.deepcopy(input_mat)
 	for i in range(len(input_mat)):
 		for j in range(len(input_mat[0])):
@@ -241,15 +324,22 @@ def transpose_mat(input_mat: list) -> list:
 def MixColumns(input_matrix: list) -> list:
 	# Get each column and then apply the matrix transformation.
 	out = []
+	print("input_matrix to MixColumns == "+str(input_matrix))
 	for i in range(4):
-		out.append(mix_one_column([input_matrix[j][i] for j in range(4)]))
+		cur_column = [input_matrix[j][i] for j in range(4)]
+		print("Here is the cur_column: "+str(cur_column))
+		out.append(mix_one_column(cur_column))
 	out = transpose_mat(out)
+	print("Outputting this from MixColumns: "+str(out))
 	return out
 
 def AddRoundKey(input_mat: list, i: int, W: list) -> list:
 	subkey = get_key_matrix(i, W)
 	print("subkey == "+str(subkey))
-	input_mat = mat_xor(input_mat, subkey)
+	print("input_mat == "+str(input_mat))
+	print("subkey == "+str(subkey))
+	#input_mat = mat_xor(input_mat, subkey) # These need to be the other way around, because bytes type object can
+	input_mat = mat_xor(subkey, input_mat)
 	return input_mat
 
 def get_key_matrix(i: int, W: list) -> list:
@@ -286,14 +376,109 @@ def encrypt_state(expanded_key: list, plaintext: bytes, num_rounds: int, W_list:
 		print("round["+str(i)+"].k_sch == "+str(print_hex(state)))
 	# Final round (making 10, 12 or 14 rounds in total):
 	state = SubBytes(state)
+	print("round["+str(num_rounds-1)+"].s_box == "+str(print_hex(state)))
 	state = ShiftRows(state)
+	print("round["+str(num_rounds-1)+"].s_row == "+str(print_hex(state)))
 	state = AddRoundKey(state, num_rounds-1, W_list)
+	print("round["+str(num_rounds-1)+"].k_sch == "+str(print_hex(state)))
 	state = BoundsCheck(state)
-	return state
+	print("Final state after encryption: "+str(print_hex(state)))
+	return print_hex(state)
+
+'''
+InvCipher(byte in[4*Nb], byte out[4*Nb], word w[Nb*(Nr+1)])
+
+begin
+
+byte state[4,Nb]
+
+state = in
+
+AddRoundKey(state, w[Nr*Nb, (Nr+1)*Nb-1]) // See Sec. 5.1.4
+
+for round = Nr-1 step -1 downto 1
+
+InvShiftRows(state) // See Sec. 5.3.1
+
+InvSubBytes(state) // See Sec. 5.3.2
+
+AddRoundKey(state, w[round*Nb, (round+1)*Nb-1])
+
+InvMixColumns(state) // See Sec. 5.3.3
+
+end for
+
+InvShiftRows(state)
+
+InvSubBytes(state)
+
+AddRoundKey(state, w[0, Nb-1])
+
+out = state
+
+end
+ 
+'''
+
+def decrypt_state(expanded_key: list, encrypted_data: list, num_rounds: int, W_list: list) -> str:
+	# This is the main decryption function.
+	state = create_state(encrypted_data)
+	state = AddRoundKey(state, num_rounds-1, W_list)
+	# for round = Nr-1 step -1 downto 1
+	for i in range(num_rounds-1, 1, -1):
+		# InvShiftRows(state) 
+		state = InvShiftRows(state)
+		state = InvSubBytes(state)
+
+def test_print_hex() -> None:
+	test_mat = [[0,4,8,12],
+				[1,5,9,13],
+				[2,6,10,14],
+				[3,7,11,15]]
+	# Now test the printing
+	print("Here is the test output.")
+	out = print_hex(test_mat)
+	print(out)
+	# 000102030405060708090a0b0c0d0e0f
+	assert out == "000102030405060708090a0b0c0d0e0f" # Should be this
+
+def test_transpose_mat() -> None:
+	test_mat = [[0,4,8,12],
+				[1,5,9,13],
+				[2,6,10,14],
+				[3,7,11,15]]
+	out = transpose_mat(test_mat)
+	assert out == [[0,1,2,3],
+				[4,5,6,7],
+				[8,9,10,11],
+				[12,13,14,15]]
+
+def test_shift() -> None:
+	paska = [[0,1,2,3],
+			[4,5,6,7],
+			[8,9,10,11],
+			[12,13,14,15]]
+	old_paska = copy.deepcopy(paska)
+	ret = ShiftRows(paska)
+	oof = [[0,1,2,3],
+			[5,6,7,4],
+			[10,11,8,9],
+			[15,12,13,14]]
+	assert ret == oof
+	# Now test inverse function.
+	oof = InvShiftRows(paska)
+	assert oof == old_paska
+	print("Passed test_shift!")
+
+
 
 def run_tests() -> None:
+	test_transpose_mat()
 	test_S()
 	test_key_expansion()
+	test_print_hex()
+	# Test the reverse functions. If there is a function called f and an inverse function called F , then f(F(x)) = F(f(x)) = x
+	test_shift()
 	return
 
 def main():
@@ -302,13 +487,16 @@ def main():
 	num_rounds, expanded_key = key_expansion(bytes(encryption_key, encoding="ascii"), "128")
 	# 00112233445566778899aabbccddeeff
 	# example_plaintext = bytes.fromhex("00112233445566778899aabbccddeeff")
-	example_plaintext = bytes.fromhex("004488cc115599dd2266aaee3377bbff")
+	#example_plaintext = bytes.fromhex("004488cc115599dd2266aaee3377bbff")
+	example_plaintext = bytes.fromhex("00112233445566778899aabbccddeeff")
 	key = bytes.fromhex("000102030405060708090a0b0c0d0e0f")
 	print("Here is the key: "+str(key))
 	#key = bytes.fromhex("004488cc115599dd2266aaee3377bbff")
 	num_rounds, expanded_key = key_expansion(key, "128")
 	encrypted = encrypt_state(expanded_key, example_plaintext, num_rounds, expanded_key)
 	print(encrypted)
+	# Now the encrypted data is in "encrypted". Now decrypting it, should return in the original plaintext.
+
 	print("Done!")
 	return 0
 
