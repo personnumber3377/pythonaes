@@ -195,27 +195,22 @@ def create_state(plaintext: bytes) -> bytes:
 			state[j][i] = cut_list[i][j]
 	return state
 
-def SubBytes(input_matrix: list) -> list:
-	#input_matrix = flatten(input_matrix)
-	#input_matrix = list(input_matrix)
-	#out = copy.deepcopy(input_matrix)
+def access_table(table: list, index: int) -> int: # This is used to access the S box and the reverse S box.
+	assert index <= 255 and index >= 0 # Sanity check.
+	ind_x = index & 0b1111
+	ind_y = (index & 0b11110000) >> 4
+	return table[ind_y][ind_x]
+
+def SubBytes(input_matrix: list, table=rijndael.S_BOX_MATRIX) -> list:
 	for i in range(len(input_matrix)):
 		for j in range(len(input_matrix[0])):
-			#print("input_matrix[i][j] == "+str(input_matrix[i][j]))
-			#print("rijndael.S_BOX_SPLIT == "+str(rijndael.S_BOX_SPLIT))
-			index_integer = input_matrix[i][j]
-			ind_x = index_integer & 0b1111
-			ind_y = (index_integer & 0b11110000) >> 4
-			#print("ind_x == "+str(ind_x))
-			#print("ind_y == "+str(ind_y))
-			#print("rijndael.S_BOX_SPLIT[8] == "+str(rijndael.S_BOX_SPLIT[8]))
-			#print("rijndael.S_BOX_SPLIT == "+str(rijndael.S_BOX_SPLIT))
-			input_matrix[i][j] = rijndael.S_BOX_MATRIX[ind_y][ind_x]
+			input_matrix[i][j] = access_table(table, input_matrix[i][j])
 	return input_matrix
 
 def InvSubBytes(input_matrix: list) -> list:
-	# Reverse of SubBytes.
-	return
+	# Reverse of SubBytes. Otherwise similar, but use the reverse matrix instead.
+	return SubBytes(input_matrix, table=rijndael.S_BOX_MATRIX_REV)
+
 
 def shift_row_once(row: list, reverse=False) -> list:
 	if not reverse:
@@ -294,6 +289,52 @@ def mix_col(r: list) -> list:
 	print("r == "+str(r))
 	assert all([r[i] <=255 for i in range(len(r))])
 	return r
+
+def poly_mod(dividend: int, divisor: int) -> int:
+	# First align the integers for the long division.
+	if dividend < divisor:
+		return dividend
+	num_bits_dividend = 
+
+def poly_mul(a: int, b: int) -> int: # This function multiplies the polynomial a with b in G(2) and then modulo x**8 + x**4 + x**3 + x**2 + x + 1.
+	out = 0
+	k = b
+	while k: # This basically shifts left and then if the current bit is a one, then xor the current thing with the thing.
+		cur_bit = k & 1 # current bit.
+		if cur_bit:
+			out ^= (a) # xor if bit is one.
+		# shift
+		a <<= 1
+		k >>= 1
+	# Now modulo in polynomial in GF(2) # See https://en.wikipedia.org/wiki/Finite_field_arithmetic#Rijndael's_(AES)_finite_field
+	out = poly_mod(out, 0x11B)
+	return out
+
+def inv_mix_col(r: list) -> list: # This is used in InvMixColumns.
+	a = [0,0,0,0]
+	b = [0,0,0,0]
+	c = [0,0,0,0]
+	d = [0,0,0,0]
+	e = [0,0,0,0]
+	'''
+	/* The array 'a' is simply a copy of the input array 'r'
+     * The array 'b' is each element of the array 'a' multiplied by 0xe
+	 * The array 'c' is each element of the array 'a' multiplied by 0x9
+	 * The array 'd' is each element of the array 'a' multiplied by 0xd
+	 * The array 'e' is each element of the array 'a' multiplied by 0xb
+     * in Rijndael's Galois field
+     * a[n] ^ b[n] is element n multiplied by 3 in Rijndael's Galois field */ 
+	'''
+	for k in range(4): # Can't use 'c' here, because it is already a name of a list.
+		a[k] = r[k]
+		b[k] = r[k] * 0xe # multiplied by 0xe
+		c[k] = r[k] * 0x9 # multiplied by 0x9
+		d[k] = r[k] * 0xd # multiplied by 0xd
+		e[k] = r[k] * 0xb # multiplied by 0xb
+
+
+
+
 
 def byte_check(int_list: list) -> list:
 	return [x & 0xff for x in int_list]
@@ -385,6 +426,13 @@ def encrypt_state(expanded_key: list, plaintext: bytes, num_rounds: int, W_list:
 	print("Final state after encryption: "+str(print_hex(state)))
 	return print_hex(state)
 
+def test_poly_mul() -> None:
+	a = 0b100
+	b = 0b100
+	res = poly_mul(a,b)
+	assert res == 0b10000 # x**2 * x**2 == x**4
+	print("test_poly_mul passed")
+	return
 '''
 InvCipher(byte in[4*Nb], byte out[4*Nb], word w[Nb*(Nr+1)])
 
@@ -470,15 +518,24 @@ def test_shift() -> None:
 	assert oof == old_paska
 	print("Passed test_shift!")
 
-
+def test_s_box() -> None:
+	# Go through every index and check the reverse.
+	for ind in range(256):
+		orig_val = access_table(rijndael.S_BOX_MATRIX, ind)
+		should_be_ind = access_table(rijndael.S_BOX_MATRIX_REV, ind)
+		assert should_be_ind == ind
+	print("test_s_box passed!")
+	return
 
 def run_tests() -> None:
 	test_transpose_mat()
 	test_S()
 	test_key_expansion()
 	test_print_hex()
+	test_s_box
 	# Test the reverse functions. If there is a function called f and an inverse function called F , then f(F(x)) = F(f(x)) = x
 	test_shift()
+	test_poly_mul()
 	return
 
 def main():
@@ -495,6 +552,8 @@ def main():
 	num_rounds, expanded_key = key_expansion(key, "128")
 	encrypted = encrypt_state(expanded_key, example_plaintext, num_rounds, expanded_key)
 	print(encrypted)
+	# Sanity check. It should be this.
+	assert encrypted == "69c4e0d86a7b0430d8cdb78070b4c55a" # This is the example vector from the pdf file.
 	# Now the encrypted data is in "encrypted". Now decrypting it, should return in the original plaintext.
 
 	print("Done!")

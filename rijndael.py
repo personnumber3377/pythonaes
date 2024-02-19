@@ -60,6 +60,26 @@ e1	f8	98	11	69	d9	8e	94	9b	1e	87	e9	ce	55	28	df
 8c	a1	89	0d	bf	e6	42	68	41	99	2d	0f	b0	54	bb	16'''
 
 
+# This reverse table is used for decryption. Here the index is the value in the original and this table returns the original index. So REV_TABLE_STR[(TABLE_STR[val>>4][val&0xf])>>4][(TABLE_STR[val>>4][val&0xf])&0xf] = val
+REV_TABLE_STR = '''52 09 6a d5 30 36 a5 38 bf 40 a3 9e 81 f3 d7 fb
+7c e3 39 82 9b 2f ff 87 34 8e 43 44 c4 de e9 cb
+54 7b 94 32 a6 c2 23 3d ee 4c 95 0b 42 fa c3 4e
+08 2e a1 66 28 d9 24 b2 76 5b a2 49 6d 8b d1 25
+72 f8 f6 64 86 68 98 16 d4 a4 5c cc 5d 65 b6 92
+6c 70 48 50 fd ed b9 da 5e 15 46 57 a7 8d 9d 84
+90 d8 ab 00 8c bc d3 0a f7 e4 58 05 b8 b3 45 06
+d0 2c 1e 8f ca 3f 0f 02 c1 af bd 03 01 13 8a 6b
+3a 91 11 41 4f 67 dc ea 97 f2 cf ce f0 b4 e6 73
+96 ac 74 22 e7 ad 35 85 e2 f9 37 e8 1c 75 df 6e
+47 f1 1a 71 1d 29 c5 89 6f b7 62 0e aa 18 be 1b
+fc 56 3e 4b c6 d2 79 20 9a db c0 fe 78 cd 5a f4
+1f dd a8 33 88 07 c7 31 b1 12 10 59 27 80 ec 5f
+60 51 7f a9 19 b5 4a 0d 2d e5 7a 9f 93 c9 9c ef
+a0 e0 3b 4d ae 2a f5 b0 c8 eb bb 3c 83 53 99 61
+17 2b 04 7e ba 77 d6 26 e1 69 14 63 55 21 0c 7d'''
+
+
+
 def init_table() -> list: # This gets called on import.
     out = []
     lines = TABLE_STR.split("\n")
@@ -77,16 +97,16 @@ def split_table(S_BOX: list) -> list:
     # Do we need to transpose here????
     return out
 
-def create_matrix(S_BOX: list) -> list:
+def create_matrix(table_string: str, sep="	") -> list:
     out = []
-    lines = TABLE_STR.split("\n")
+    lines = table_string.split("\n")
     for line in lines:
-        hex_vals = line.split("	")
+        hex_vals = line.split(sep) # This is needed, because I copied the reverse table from the pdf, which used spaces instead of tabs
         hex_vals = [int(x, base=16) for x in hex_vals]
         out.append(hex_vals)
     return out # out should be a flat list of integers now and we just access it by the number.
 
 S_BOX = init_table()
-S_BOX_SPLIT = split_table(S_BOX) # This creates the 4x4 matrixes, which we need for encryption and decryption.
-S_BOX_MATRIX = create_matrix(S_BOX) # This is the 2D matrix form
-
+#S_BOX_SPLIT = split_table(S_BOX) # This creates the 4x4 matrixes, which we need for encryption and decryption. (UNUSED)
+S_BOX_MATRIX = create_matrix(TABLE_STR) # This is the 2D matrix form
+S_BOX_MATRIX_REV = create_matrix(REV_TABLE_STR, sep=" ")
