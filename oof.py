@@ -1,3 +1,4 @@
+
 import numpy as np
 import rijndael
 import copy
@@ -123,25 +124,7 @@ def key_expansion(encryption_key: bytes, AES_version: str):
 	# This cuts the matrix into 4x4 matrixes.
 	W_list = [W_list[x:x+4] for x in range(0, len(W_list),4)]
 	W_actual = make_integer_list(W_list)
-	inverse_key_stuff = copy.deepcopy(W_actual)
-	# Now do the stuff...
-	'''
-	for round = 1 step 1 to Nr-1
-		InvMixColumns(dw[round*Nb, (round+1)*Nb-1]) 
-	'''
-	inverse_key_mat = [inverse_key_stuff[0]] # add the initial key shit.
-	for k in range(1,len(inverse_key_stuff)):
-		# Here do the inverse shit.
-		inverse_key = [] # This is the 4x4 matrix.
-		assert len(inverse_key_stuff[k]) == 4 # Sanity.
-		cur_mat = inverse_key_stuff[k]
-		for l in range(4):
-			cur_column = [cur_mat[j][l] for j in range(4)]
-			cur_column = rev_mix_column(cur_column)
-			inverse_key.append(cur_column)
-		inverse_key_mat.append(inverse_key)
-
-	return R, W_actual, inverse_key_mat # inverse_key_mat is basically the reverse key list, where each element is the 4x4 key matrix.
+	return R, W_actual
 
 
 # Thanks to https://stackoverflow.com/questions/952914/how-do-i-make-a-flat-list-out-of-a-list-of-lists
@@ -199,7 +182,7 @@ def print_hex(byte_list: bytes) -> None:
 def test_key_expansion():
 	string = "2b 7e 15 16 28 ae d2 a6 ab f7 15 88 09 cf 4f 3c"
 	key = bytes([int(x, base=16) for x in string.split(" ")])
-	_, expanded_key, _ = key_expansion(bytes(key), "128")
+	_, expanded_key = key_expansion(bytes(key), "128")
 	print_hex(expanded_key)
 
 def create_state(plaintext: bytes) -> bytes:
@@ -216,7 +199,9 @@ def create_state(plaintext: bytes) -> bytes:
 	return state
 
 def access_table(table: list, index: int) -> int: # This is used to access the S box and the reverse S box.
-	assert index <= 255 and index >= 0 # Sanity check.
+	# Sanity check.
+	assert index <= 255
+	assert index >= 0
 	ind_x = index & 0b1111
 	ind_y = (index & 0b11110000) >> 4
 	return table[ind_y][ind_x]
@@ -318,15 +303,14 @@ def bits(n: int) -> int:
 def poly_mod(dividend: int, divisor: int) -> int:
 	# First align the integers for the long division.
 	#print("Called poly_mod.")
-	#if dividend < divisor:
-	#	return dividend
+	if dividend < divisor:
+		#print("poopoo")
+		return dividend
 	# This is used to align
 	num_bits_dividend = bits(dividend)
 	num_bits_divisor = bits(divisor)
 	# We need to shift the divisor such that the most significant bits are aligned.
 	diff = num_bits_dividend - num_bits_divisor
-	if diff < 0:
-		return dividend
 	divisor <<= diff # Align.
 	# Main loop.
 	#print("diff == "+str(diff))
@@ -356,7 +340,6 @@ def poly_mul(a: int, b: int) -> int: # This function multiplies the polynomial a
 	out = poly_mod(out, 0x11B)
 	#print("result is this: "+str(hex(out)))
 	assert out < 0x11B
-	assert out < 256
 	return out
 
 def rev_mix_column(r: list) -> list: # This is used in InvMixColumns.
@@ -386,16 +369,15 @@ def rev_mix_column(r: list) -> list: # This is used in InvMixColumns.
 		e[k] = poly_mul(r[k], 0xb)
 		# Sanity check.
 		int_list = [b[k], c[k], d[k], e[k]]
-		#print("int_list == "+str(int_list))
-		assert all([(x >= 0 and x < 0x11B) for x in int_list])
+		assert all([x < 0x11B for x in int_list])
 
 	# Now we do something similar to what we did in mix_col
 	r[0] = b[0] ^ e[1] ^ d[2] ^ c[3]
 	r[1] = c[0] ^ b[1] ^ e[2] ^ d[3]
 	r[2] = d[0] ^ c[1] ^ b[2] ^ e[3]
 	r[3] = e[0] ^ d[1] ^ c[2] ^ b[3]
-	assert all([(x >= 0 and x <= 255 for x in r)]) # Sanity checking.
-	#print("Returning this from rev_mix_column: "+str(r))
+	# Sanity checking.
+	assert all([(x >= 0 and x <= 255 for x in r)])
 	return r
 
 
@@ -431,9 +413,7 @@ def transpose_mat(input_mat: list) -> list:
 def MixColumns(input_matrix: list, reverse=False) -> list:
 	# Get each column and then apply the matrix transformation.
 	out = []
-	sanity_copy = copy.deepcopy(input_matrix)
-	assert all([x >= 0 and x <= 255 for x in flatten(sanity_copy)]) # Here is the sanity check on the input.
-	#print("input_matrix to MixColumns == "+str(input_matrix))
+	print("input_matrix to MixColumns == "+str(input_matrix))
 	for i in range(4):
 		cur_column = [input_matrix[j][i] for j in range(4)]
 		print("Here is the cur_column: "+str(cur_column))
@@ -441,33 +421,21 @@ def MixColumns(input_matrix: list, reverse=False) -> list:
 
 			out.append(mix_one_column(cur_column))
 		else:
-			print("cur_column: "+str(cur_column))
-			reverse_mixing = rev_mix_column(cur_column)
-			print("output from rev_mix_column: "+str(reverse_mixing))
-			assert all([x >= 0 and x <= 255 for x in reverse_mixing])
-			out.append(reverse_mixing)
-
-	print("Outputting this from MixColumns: "+str(out))
-	# Sanity checking.
-	sanity_copy = copy.deepcopy(out)
-	assert all([x >= 0 and x <= 255 for x in flatten(sanity_copy)])
+			out.append(rev_mix_column(cur_column))
 	out = transpose_mat(out)
+	print("Outputting this from MixColumns: "+str(out))
 	return out
 
 def InvMixColumns(input_matrix: list) -> list:
 	return MixColumns(input_matrix, reverse=True)
 
-def AddRoundKey(input_mat: list, i: int, W: list, cur_round_num=None) -> list:
+def AddRoundKey(input_mat: list, i: int, W: list) -> list:
 	subkey = get_key_matrix(i, W)
-	if cur_round_num != None:
-
-		print("round["+str(cur_round_num)+"].ik_sch == "+str(print_hex(subkey)))
-	#print("subkey == "+str(subkey))
-	#print("input_mat == "+str(input_mat))
-	#print("subkey == "+str(subkey))
+	print("subkey == "+str(subkey))
+	print("input_mat == "+str(input_mat))
+	print("subkey == "+str(subkey))
 	#input_mat = mat_xor(input_mat, subkey) # These need to be the other way around, because bytes type object can
 	input_mat = mat_xor(subkey, input_mat)
-	#print("Here is the output from AddRoundKey: "+str(input_mat))
 	return input_mat
 
 def get_key_matrix(i: int, W: list) -> list:
@@ -607,27 +575,16 @@ end
 def decrypt_state(expanded_key: list, encrypted_data: list, num_rounds: int, W_list: list) -> str:
 	# This is the main decryption function.
 	state = create_state(encrypted_data)
-	print("round[0].iinput: "+str(print_hex(state)))
-	#state = AddRoundKey(state, num_rounds-1, W_list)
-	state = AddRoundKey(state, num_rounds-1, W_list, cur_round_num=0)
-
-	#state = AddRoundKey(state, 0, W_list, cur_round_num=0) # Maybe this will actually work?????
-	#print("round[0].ik_sch == "+str(print_hex(state)))
+	state = AddRoundKey(state, num_rounds-1, W_list)
 	# for round = Nr-1 step -1 downto 1
-	count = 0
-	for i in range(num_rounds-2, 0, -1): # zero is not included, so 1 is the final value of i
-		count += 1
+	for i in range(num_rounds-1, 0, -1): # zero is not included, so 1 is the final value of i
 		# InvShiftRows(state) 
-		print("round["+str(count)+"].istart: "+str(print_hex(state)))
 		state = InvSubBytes(state)
-		print("round["+str(count)+"].is_row: "+str(print_hex(state)))
 		state = InvShiftRows(state)
-		print("round["+str(count)+"].is_box: "+str(print_hex(state)))
 		state = InvMixColumns(state)
-		print("round["+str(count)+"].im_col: "+str(print_hex(state)))
-		state = AddRoundKey(state, i, W_list, cur_round_num=count)
-		#print("round["+str(count)+"].istart: "+str(print_hex(state)))
-	print("End of the loop!!!!")
+		state = AddRoundKey(state, i, W_list)
+		state = BoundsCheck(state)
+
 	state = InvSubBytes(state)
 	state = InvShiftRows(state)
 	state = AddRoundKey(state, 0, W_list)
@@ -706,7 +663,7 @@ def run_tests() -> None:
 def main():
 	run_tests() # Sanity tests.
 	encryption_key = "oofoof"
-	num_rounds, expanded_key, reverse_keys = key_expansion(bytes(encryption_key, encoding="ascii"), "128")
+	num_rounds, expanded_key = key_expansion(bytes(encryption_key, encoding="ascii"), "128")
 	# 00112233445566778899aabbccddeeff
 	# example_plaintext = bytes.fromhex("00112233445566778899aabbccddeeff")
 	#example_plaintext = bytes.fromhex("004488cc115599dd2266aaee3377bbff")
@@ -714,7 +671,7 @@ def main():
 	key = bytes.fromhex("000102030405060708090a0b0c0d0e0f")
 	print("Here is the key: "+str(key))
 	#key = bytes.fromhex("004488cc115599dd2266aaee3377bbff")
-	num_rounds, expanded_key, reverse_keys = key_expansion(key, "128")
+	num_rounds, expanded_key = key_expansion(key, "128")
 
 	# encrypted = encrypt_state(expanded_key, example_plaintext, num_rounds, expanded_key)
 	# print(encrypted)
@@ -725,11 +682,12 @@ def main():
 	# Now the encrypted data is in "encrypted". Now decrypting it, should return in the original plaintext.
 	# First convert the encrypted stuff to bytes before decrypt_state.
 	encrypted = bytes.fromhex(encrypted)
-	# decrypted = decrypt_state(expanded_key, encrypted, num_rounds, expanded_key) # This was the old thing.
-	decrypted = decrypt_state(reverse_keys, encrypted, num_rounds, reverse_keys)
+	decrypted = decrypt_state(expanded_key, encrypted, num_rounds, expanded_key)
 	print("Done!")
 	return 0
 
 if __name__=="__main__":
 
 	exit(main())
+
+

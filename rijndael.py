@@ -1,4 +1,6 @@
 
+import copy
+
 '''
 
 	00	01	02	03	04	05	06	07	08	09	0a	0b	0c	0d	0e	0f
@@ -78,7 +80,14 @@ fc 56 3e 4b c6 d2 79 20 9a db c0 fe 78 cd 5a f4
 a0 e0 3b 4d ae 2a f5 b0 c8 eb bb 3c 83 53 99 61
 17 2b 04 7e ba 77 d6 26 e1 69 14 63 55 21 0c 7d'''
 
-
+def flatten(items):
+	"""Yield items from any nested iterable; see Reference."""
+	for x in items:
+		if isinstance(x, Iterable) and not isinstance(x, (str, bytes)):
+			for sub_x in flatten(x):
+				yield sub_x
+		else:
+			yield x
 
 def init_table() -> list: # This gets called on import.
     out = []
@@ -97,6 +106,13 @@ def split_table(S_BOX: list) -> list:
     # Do we need to transpose here????
     return out
 
+def sanity_check(matrix: list) -> None: # This checks that every value in the list is actually a byte.
+    # Make copy, because we do not want to modify the original matrix:
+    copy_mat = copy.deepcopy(matrix)
+    copy_mat = flatten(copy_mat) # Flatten for easier iteration over it.
+    assert all([(x >= 0 and x <= 255 for x in copy_mat)])
+    print("sanity_check passed for the matrix.")
+
 def create_matrix(table_string: str, sep="	") -> list:
     out = []
     lines = table_string.split("\n")
@@ -110,3 +126,4 @@ S_BOX = init_table()
 #S_BOX_SPLIT = split_table(S_BOX) # This creates the 4x4 matrixes, which we need for encryption and decryption. (UNUSED)
 S_BOX_MATRIX = create_matrix(TABLE_STR) # This is the 2D matrix form
 S_BOX_MATRIX_REV = create_matrix(REV_TABLE_STR, sep=" ")
+sanity_check(S_BOX_MATRIX_REV)
