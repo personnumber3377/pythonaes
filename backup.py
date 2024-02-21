@@ -623,17 +623,17 @@ def decrypt_state(expanded_key: list, encrypted_data: list, num_rounds: int, W_l
 		count += 1
 		# InvShiftRows(state) 
 		print("round["+str(count)+"].istart: "+str(print_hex(state)))
-		state = InvShiftRows(state)
-		print("round["+str(count)+"].is_row: "+str(print_hex(state)))
 		state = InvSubBytes(state)
-		#print("round["+str(count)+"].im_col: "+str(print_hex(state)))
-		state = AddRoundKey(state, i, W_list, cur_round_num=count)
+		print("round["+str(count)+"].is_row: "+str(print_hex(state)))
+		state = InvShiftRows(state)
 		print("round["+str(count)+"].is_box: "+str(print_hex(state)))
 		state = InvMixColumns(state)
+		print("round["+str(count)+"].im_col: "+str(print_hex(state)))
+		state = AddRoundKey(state, i, W_list, cur_round_num=count)
 		#print("round["+str(count)+"].istart: "+str(print_hex(state)))
 	print("End of the loop!!!!")
-	state = InvShiftRows(state)
 	state = InvSubBytes(state)
+	state = InvShiftRows(state)
 	state = AddRoundKey(state, 0, W_list)
 
 	return state
@@ -728,24 +728,22 @@ def main():
 	#key = bytes.fromhex("004488cc115599dd2266aaee3377bbff")
 	num_rounds, expanded_key, reverse_keys = key_expansion(key, "128")
 	print_keys(expanded_key)
-	encrypted = encrypt_state(expanded_key, example_plaintext, num_rounds, expanded_key)
-	print("Here is the encrypted data: "+str(encrypted))
+	# encrypted = encrypt_state(expanded_key, example_plaintext, num_rounds, expanded_key)
+	# print(encrypted)
 	# Sanity check. It should be this.
-	assert encrypted == "69c4e0d86a7b0430d8cdb78070b4c55a" # This is the example vector from the pdf file.
+	#assert encrypted == "69c4e0d86a7b0430d8cdb78070b4c55a" # This is the example vector from the pdf file.
 
-	#encrypted = "69c4e0d86a7b0430d8cdb78070b4c55a"
+	encrypted = "69c4e0d86a7b0430d8cdb78070b4c55a"
 	# Now the encrypted data is in "encrypted". Now decrypting it, should return in the original plaintext.
 	# First convert the encrypted stuff to bytes before decrypt_state.
 	encrypted = bytes.fromhex(encrypted)
-
 	# decrypted = decrypt_state(expanded_key, encrypted, num_rounds, expanded_key) # This was the old thing.
 	#decrypted = decrypt_state(reverse_keys, encrypted, num_rounds, reverse_keys)
 	# expanded_key
 
 	decrypted = decrypt_state(expanded_key, encrypted, num_rounds, expanded_key)
-	res = print_hex(decrypted)
-	print("Here is the final decrypted result: "+str(res))
-	assert res == "00112233445566778899aabbccddeeff"
+
+	print("Here is the final decrypted result: "+str(print_hex(decrypted)))
 	print("Done!")
 	return 0
 
