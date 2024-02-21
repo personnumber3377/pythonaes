@@ -8,6 +8,10 @@ line == 2d 26 31 4c	4d 7e bd f8	45 38 49 76	77 126 189 248
 out[0][0] == [219, 19, 83, 69]
 out[0][1] == [142, 77, 161, 188]
 Generated the mix col testdata lists!!!
+==============================
+==============================
+==============================
+Now running tests!!!
 [[43, 126, 21, 22], [40, 174, 210, 166], [171, 247, 21, 136], [9, 207, 79, 60]]
 [[160, 250, 254, 23], [136, 84, 44, 177], [35, 163, 57, 57], [42, 108, 118, 5]]
 [[242, 194, 149, 242], [122, 150, 185, 67], [89, 53, 128, 122], [115, 89, 246, 127]]
@@ -21,6 +25,7 @@ Generated the mix col testdata lists!!!
 [[208, 20, 249, 168], [201, 238, 37, 137], [225, 63, 12, 200], [182, 99, 12, 166]]
 Here is the test output.
 000102030405060708090a0b0c0d0e0f
+test_s_box passed!
 input_mat[1] == [4, 5, 6, 7]
 after: [5, 6, 7, 4]
 Passed test_shift!
@@ -977,3 +982,2205 @@ End of the loop!!!!
 Cor key thing: [[0, 4, 8, 12], [1, 5, 9, 13], [2, 6, 10, 14], [3, 7, 11, 15]]
 Here is the final decrypted result: 00112233445566778899aabbccddeeff
 Done!
+test_enc_dec passed!!!
+Here is the key: b'\x00\x01\x02\x03\x04\x05\x06\x07\x08\t\n\x0b\x0c\r\x0e\x0f\x10\x11\x12\x13\x14\x15\x16\x17'
+[[0, 1, 2, 3], [4, 5, 6, 7], [8, 9, 10, 11], [12, 13, 14, 15]]
+[[16, 17, 18, 19], [20, 21, 22, 23], [88, 70, 242, 249], [92, 67, 244, 254]]
+[[84, 74, 254, 245], [88, 71, 240, 250], [72, 86, 226, 233], [92, 67, 244, 254]]
+[[64, 249, 73, 179], [28, 186, 189, 77], [72, 240, 67, 184], [16, 183, 179, 66]]
+[[88, 225, 81, 171], [4, 162, 165, 85], [126, 255, 181, 65], [98, 69, 8, 12]]
+[[42, 181, 75, 180], [58, 2, 248, 246], [98, 227, 169, 93], [102, 65, 12, 8]]
+[[245, 1, 133, 114], [151, 68, 141, 126], [189, 241, 198, 202], [135, 243, 62, 60]]
+[[229, 16, 151, 97], [131, 81, 155, 105], [52, 21, 124, 158], [163, 81, 241, 224]]
+[[30, 160, 55, 42], [153, 83, 9, 22], [124, 67, 158, 119], [255, 18, 5, 30]]
+[[221, 126, 14, 136], [126, 47, 255, 104], [96, 143, 200, 66], [249, 220, 193, 84]]
+[[133, 159, 95, 35], [122, 141, 90, 61], [192, 192, 41, 82], [190, 239, 214, 58]]
+[[222, 96, 30, 120], [39, 188, 223, 44], [162, 35, 128, 15], [216, 174, 218, 50]]
+[[164, 151, 10, 51], [26, 120, 220, 9], [196, 24, 194, 113], [227, 164, 29, 93]]
+==============================
+000102030405060708090a0b0c0d0e0f
+10111213141516175846f2f95c43f4fe
+544afef55847f0fa4856e2e95c43f4fe
+40f949b31cbabd4d48f043b810b7b342
+58e151ab04a2a5557effb5416245080c
+2ab54bb43a02f8f662e3a95d66410c08
+f501857297448d7ebdf1c6ca87f33e3c
+e510976183519b6934157c9ea351f1e0
+1ea0372a995309167c439e77ff12051e
+dd7e0e887e2fff68608fc842f9dcc154
+859f5f237a8d5a3dc0c02952beefd63a
+de601e7827bcdf2ca223800fd8aeda32
+a4970a331a78dc09c418c271e3a41d5d
+==============================
+Here is the expanded key: [[[0, 4, 8, 12], [1, 5, 9, 13], [2, 6, 10, 14], [3, 7, 11, 15]], [[16, 20, 88, 92], [17, 21, 70, 67], [18, 22, 242, 244], [19, 23, 249, 254]], [[84, 88, 72, 92], [74, 71, 86, 67], [254, 240, 226, 244], [245, 250, 233, 254]], [[64, 28, 72, 16], [249, 186, 240, 183], [73, 189, 67, 179], [179, 77, 184, 66]], [[88, 4, 126, 98], [225, 162, 255, 69], [81, 165, 181, 8], [171, 85, 65, 12]], [[42, 58, 98, 102], [181, 2, 227, 65], [75, 248, 169, 12], [180, 246, 93, 8]], [[245, 151, 189, 135], [1, 68, 241, 243], [133, 141, 198, 62], [114, 126, 202, 60]], [[229, 131, 52, 163], [16, 81, 21, 81], [151, 155, 124, 241], [97, 105, 158, 224]], [[30, 153, 124, 255], [160, 83, 67, 18], [55, 9, 158, 5], [42, 22, 119, 30]], [[221, 126, 96, 249], [126, 47, 143, 220], [14, 255, 200, 193], [136, 104, 66, 84]], [[133, 122, 192, 190], [159, 141, 192, 239], [95, 90, 41, 214], [35, 61, 82, 58]], [[222, 39, 162, 216], [96, 188, 35, 174], [30, 223, 128, 218], [120, 44, 15, 50]], [[164, 26, 196, 227], [151, 120, 24, 164], [10, 220, 194, 29], [51, 9, 113, 93]]]
+Here is the length of the key: 13
+round[0].input : 00112233445566778899aabbccddeeff
+Cor key thing: [[0, 4, 8, 12], [1, 5, 9, 13], [2, 6, 10, 14], [3, 7, 11, 15]]
+round[0].k_sch : 0004080c0105090d02060a0e03070b0f1014585c111546431216f2f41317f9fe5458485c4a475643fef0e2f4f5fae9fe401c4810f9baf0b749bd43b3b34db84258047e62e1a2ff4551a5b508ab55410c2a3a6266b502e3414bf8a90cb4f65d08f597bd870144f1f3858dc63e727eca3ce58334a310511551979b7cf161699ee01e997cffa053431237099e052a16771edd7e60f97e2f8fdc0effc8c188684254857ac0be9f8dc0ef5f5a29d6233d523ade27a2d860bc23ae1edf80da782c0f32a41ac4e3977818a40adcc21d3309715d
+round[1].start == 00102030405060708090a0b0c0d0e0f0
+round[1].s_box == 63cab7040953d051cd60e0e7ba70e18c
+input_mat[1] == [202, 83, 96, 112]
+after: [83, 96, 112, 202]
+round[1].s_row == 6353e08c0960e104cd70b751bacad0e7
+Here is the cur_column: [99, 83, 224, 140]
+r original: [99, 83, 224, 140]
+b[c] == 198
+h * 0x1B + 0x100 == 0x100
+b[c] final == 198
+b[c] == 166
+h * 0x1B + 0x100 == 0x100
+b[c] final == 166
+b[c] == 448
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 219
+b[c] == 280
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 3
+r == [95, 114, 100, 21]
+Here is the cur_column: [9, 96, 225, 4]
+r original: [9, 96, 225, 4]
+b[c] == 18
+h * 0x1B + 0x100 == 0x100
+b[c] final == 18
+b[c] == 192
+h * 0x1B + 0x100 == 0x100
+b[c] final == 192
+b[c] == 450
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 217
+b[c] == 8
+h * 0x1B + 0x100 == 0x100
+b[c] final == 8
+r == [87, 245, 188, 146]
+Here is the cur_column: [205, 112, 183, 81]
+r original: [205, 112, 183, 81]
+b[c] == 410
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 129
+b[c] == 224
+h * 0x1B + 0x100 == 0x100
+b[c] final == 224
+b[c] == 366
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 117
+b[c] == 162
+h * 0x1B + 0x100 == 0x100
+b[c] final == 162
+r == [247, 190, 59, 41]
+Here is the cur_column: [186, 202, 208, 231]
+r original: [186, 202, 208, 231]
+b[c] == 372
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 111
+b[c] == 404
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 143
+b[c] == 416
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 187
+b[c] == 462
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 213
+r == [29, 185, 249, 26]
+Outputting this from MixColumns: [[95, 114, 100, 21], [87, 245, 188, 146], [247, 190, 59, 41], [29, 185, 249, 26]]
+round[1].m_col == 5f72641557f5bc92f7be3b291db9f91a
+Cor key thing: [[16, 20, 88, 92], [17, 21, 70, 67], [18, 22, 242, 244], [19, 23, 249, 254]]
+round[1].k_sch == 4f63760643e0aa85aff8c9d041fa0de4
+round[2].start == 4f63760643e0aa85aff8c9d041fa0de4
+round[2].s_box == 84fb386f1ae1ac977941dd70832dd769
+input_mat[1] == [251, 225, 65, 45]
+after: [225, 65, 45, 251]
+round[2].s_row == 84e1dd691a41d76f792d389783fbac70
+Here is the cur_column: [132, 225, 221, 105]
+r original: [132, 225, 221, 105]
+b[c] == 264
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 19
+b[c] == 450
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 217
+b[c] == 442
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 161
+b[c] == 210
+h * 0x1B + 0x100 == 0x100
+b[c] final == 210
+r == [159, 72, 127, 121]
+Here is the cur_column: [26, 65, 215, 111]
+r original: [26, 65, 215, 111]
+b[c] == 52
+h * 0x1B + 0x100 == 0x100
+b[c] final == 52
+b[c] == 130
+h * 0x1B + 0x100 == 0x100
+b[c] final == 130
+b[c] == 430
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 181
+b[c] == 222
+h * 0x1B + 0x100 == 0x100
+b[c] final == 222
+r == [79, 149, 95, 102]
+Here is the cur_column: [121, 45, 56, 151]
+r original: [121, 45, 56, 151]
+b[c] == 242
+h * 0x1B + 0x100 == 0x100
+b[c] final == 242
+b[c] == 90
+h * 0x1B + 0x100 == 0x100
+b[c] final == 90
+b[c] == 112
+h * 0x1B + 0x100 == 0x100
+b[c] final == 112
+b[c] == 302
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 53
+r == [42, 252, 134, 171]
+Here is the cur_column: [131, 251, 172, 112]
+r original: [131, 251, 172, 112]
+b[c] == 262
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 29
+b[c] == 502
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 237
+b[c] == 344
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 67
+b[c] == 224
+h * 0x1B + 0x100 == 0x100
+b[c] final == 224
+r == [215, 241, 171, 41]
+Outputting this from MixColumns: [[159, 72, 127, 121], [79, 149, 95, 102], [42, 252, 134, 171], [215, 241, 171, 41]]
+round[2].m_col == 9f487f794f955f662afc86abd7f1ab29
+Cor key thing: [[84, 88, 72, 92], [74, 71, 86, 67], [254, 240, 226, 244], [245, 250, 233, 254]]
+round[2].k_sch == cb02818c17d2af9c62aa64428bb25fd7
+round[3].start == cb02818c17d2af9c62aa64428bb25fd7
+round[3].s_box == 1f770c64f0b579deaaac432c3d37cf0e
+input_mat[1] == [119, 181, 172, 55]
+after: [181, 172, 55, 119]
+round[3].s_row == 1fb5430ef0accf64aa370cde3d77792c
+Here is the cur_column: [31, 181, 67, 14]
+r original: [31, 181, 67, 14]
+b[c] == 62
+h * 0x1B + 0x100 == 0x100
+b[c] final == 62
+b[c] == 362
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 113
+b[c] == 134
+h * 0x1B + 0x100 == 0x100
+b[c] final == 134
+b[c] == 28
+h * 0x1B + 0x100 == 0x100
+b[c] final == 28
+r == [183, 165, 62, 203]
+Here is the cur_column: [240, 172, 207, 100]
+r original: [240, 172, 207, 100]
+b[c] == 480
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 251
+b[c] == 344
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 67
+b[c] == 414
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 133
+b[c] == 200
+h * 0x1B + 0x100 == 0x100
+b[c] final == 200
+r == [191, 157, 117, 160]
+Here is the cur_column: [170, 55, 12, 222]
+r original: [170, 55, 12, 222]
+b[c] == 340
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 79
+b[c] == 110
+h * 0x1B + 0x100 == 0x100
+b[c] final == 110
+b[c] == 24
+h * 0x1B + 0x100 == 0x100
+b[c] final == 24
+b[c] == 444
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 167
+r == [196, 14, 252, 121]
+Here is the cur_column: [61, 119, 121, 44]
+r original: [61, 119, 121, 44]
+b[c] == 122
+h * 0x1B + 0x100 == 0x100
+b[c] final == 122
+b[c] == 238
+h * 0x1B + 0x100 == 0x100
+b[c] final == 238
+b[c] == 242
+h * 0x1B + 0x100 == 0x100
+b[c] final == 242
+b[c] == 88
+h * 0x1B + 0x100 == 0x100
+b[c] final == 88
+r == [182, 116, 204, 17]
+Outputting this from MixColumns: [[183, 165, 62, 203], [191, 157, 117, 160], [196, 14, 252, 121], [182, 116, 204, 17]]
+round[3].m_col == b7a53ecbbf9d75a0c40efc79b674cc11
+Cor key thing: [[64, 28, 72, 16], [249, 186, 240, 183], [73, 189, 67, 179], [179, 77, 184, 66]]
+round[3].k_sch == f75c7778a327c8ed8cfebfc1a6c37f53
+round[4].start == f75c7778a327c8ed8cfebfc1a6c37f53
+round[4].s_box == 684af5bc0acce85564bb0878242ed2ed
+input_mat[1] == [74, 204, 187, 46]
+after: [204, 187, 46, 74]
+round[4].s_row == 68cc08ed0abbd2bc642ef555244ae878
+Here is the cur_column: [104, 204, 8, 237]
+r original: [104, 204, 8, 237]
+b[c] == 208
+h * 0x1B + 0x100 == 0x100
+b[c] final == 208
+b[c] == 408
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 131
+b[c] == 16
+h * 0x1B + 0x100 == 0x100
+b[c] final == 16
+b[c] == 474
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 193
+r == [122, 30, 152, 189]
+Here is the cur_column: [10, 187, 210, 188]
+r original: [10, 187, 210, 188]
+b[c] == 20
+h * 0x1B + 0x100 == 0x100
+b[c] final == 20
+b[c] == 374
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 109
+b[c] == 420
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 191
+b[c] == 376
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 99
+r == [172, 182, 209, 20]
+Here is the cur_column: [100, 46, 245, 85]
+r original: [100, 46, 245, 85]
+b[c] == 200
+h * 0x1B + 0x100 == 0x100
+b[c] final == 200
+b[c] == 92
+h * 0x1B + 0x100 == 0x100
+b[c] final == 92
+b[c] == 490
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 241
+b[c] == 170
+h * 0x1B + 0x100 == 0x100
+b[c] final == 170
+r == [26, 105, 68, 221]
+Here is the cur_column: [36, 74, 232, 120]
+r original: [36, 74, 232, 120]
+b[c] == 72
+h * 0x1B + 0x100 == 0x100
+b[c] final == 72
+b[c] == 148
+h * 0x1B + 0x100 == 0x100
+b[c] final == 148
+b[c] == 464
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 203
+b[c] == 240
+h * 0x1B + 0x100 == 0x100
+b[c] final == 240
+r == [6, 235, 45, 62]
+Outputting this from MixColumns: [[122, 30, 152, 189], [172, 182, 209, 20], [26, 105, 68, 221], [6, 235, 45, 62]]
+round[4].m_col == 7a1e98bdacb6d1141a6944dd06eb2d3e
+Cor key thing: [[88, 4, 126, 98], [225, 162, 255, 69], [81, 165, 181, 8], [171, 85, 65, 12]]
+round[4].k_sch == 22ffc916a81474416496f19c64ae2532
+round[5].start == 22ffc916a81474416496f19c64ae2532
+round[5].s_box == 9316dd47c2fa92834390a1de43e43f23
+input_mat[1] == [22, 250, 144, 228]
+after: [250, 144, 228, 22]
+round[5].s_row == 93faa123c2903f4743e4dd83431692de
+Here is the cur_column: [147, 250, 161, 35]
+r original: [147, 250, 161, 35]
+b[c] == 294
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 61
+b[c] == 500
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 239
+b[c] == 322
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 89
+b[c] == 70
+h * 0x1B + 0x100 == 0x100
+b[c] final == 70
+r == [170, 167, 85, 179]
+Here is the cur_column: [194, 144, 63, 71]
+r original: [194, 144, 63, 71]
+b[c] == 388
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 159
+b[c] == 288
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 59
+b[c] == 126
+h * 0x1B + 0x100 == 0x100
+b[c] final == 126
+b[c] == 142
+h * 0x1B + 0x100 == 0x100
+b[c] final == 142
+r == [76, 255, 229, 124]
+Here is the cur_column: [67, 228, 221, 131]
+r original: [67, 228, 221, 131]
+b[c] == 134
+h * 0x1B + 0x100 == 0x100
+b[c] final == 134
+b[c] == 456
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 211
+b[c] == 442
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 161
+b[c] == 262
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 29
+r == [239, 111, 152, 225]
+Here is the cur_column: [67, 22, 146, 222]
+r original: [67, 22, 146, 222]
+b[c] == 134
+h * 0x1B + 0x100 == 0x100
+b[c] final == 134
+b[c] == 44
+h * 0x1B + 0x100 == 0x100
+b[c] final == 44
+b[c] == 292
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 63
+b[c] == 444
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 167
+r == [240, 28, 19, 230]
+Outputting this from MixColumns: [[170, 167, 85, 179], [76, 255, 229, 124], [239, 111, 152, 225], [240, 28, 19, 230]]
+round[5].m_col == aaa755b34cffe57cef6f98e1f01c13e6
+Cor key thing: [[42, 58, 98, 102], [181, 2, 227, 65], [75, 248, 169, 12], [180, 246, 93, 8]]
+round[5].k_sch == 80121e0776fd1d8a8d8c31bc965d1fee
+round[6].start == 80121e0776fd1d8a8d8c31bc965d1fee
+round[6].s_box == cdc972c53854a47e5d64c765904cc028
+input_mat[1] == [201, 84, 100, 76]
+after: [84, 100, 76, 201]
+round[6].s_row == cd54c7283864c0c55d4c727e90c9a465
+Here is the cur_column: [205, 84, 199, 40]
+r original: [205, 84, 199, 40]
+b[c] == 410
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 129
+b[c] == 168
+h * 0x1B + 0x100 == 0x100
+b[c] final == 168
+b[c] == 398
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 149
+b[c] == 80
+h * 0x1B + 0x100 == 0x100
+b[c] final == 80
+r == [146, 31, 116, 143]
+Here is the cur_column: [56, 100, 192, 197]
+r original: [56, 100, 192, 197]
+b[c] == 112
+h * 0x1B + 0x100 == 0x100
+b[c] final == 112
+b[c] == 200
+h * 0x1B + 0x100 == 0x100
+b[c] final == 200
+b[c] == 384
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 155
+b[c] == 394
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 145
+r == [217, 110, 147, 125]
+Here is the cur_column: [93, 76, 114, 126]
+r original: [93, 76, 114, 126]
+b[c] == 186
+h * 0x1B + 0x100 == 0x100
+b[c] final == 186
+b[c] == 152
+h * 0x1B + 0x100 == 0x100
+b[c] final == 152
+b[c] == 228
+h * 0x1B + 0x100 == 0x100
+b[c] final == 228
+b[c] == 252
+h * 0x1B + 0x100 == 0x100
+b[c] final == 252
+r == [98, 45, 119, 37]
+Here is the cur_column: [144, 201, 164, 101]
+r original: [144, 201, 164, 101]
+b[c] == 288
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 59
+b[c] == 402
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 137
+b[c] == 328
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 83
+b[c] == 202
+h * 0x1B + 0x100 == 0x100
+b[c] final == 202
+r == [186, 139, 165, 12]
+Outputting this from MixColumns: [[146, 31, 116, 143], [217, 110, 147, 125], [98, 45, 119, 37], [186, 139, 165, 12]]
+round[6].m_col == 921f748fd96e937d622d7725ba8ba50c
+Cor key thing: [[245, 151, 189, 135], [1, 68, 241, 243], [133, 141, 198, 62], [114, 126, 202, 60]]
+round[6].k_sch == 671ef1fd4e2a1e03dfdcb1ef3d789b30
+round[7].start == 671ef1fd4e2a1e03dfdcb1ef3d789b30
+round[7].s_box == 8572a1542fe5727b9e86c8df27bc1404
+input_mat[1] == [114, 229, 134, 188]
+after: [229, 134, 188, 114]
+round[7].s_row == 85e5c8042f8614549ebca17b277272df
+Here is the cur_column: [133, 229, 200, 4]
+r original: [133, 229, 200, 4]
+b[c] == 266
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 17
+b[c] == 458
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 209
+b[c] == 400
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 139
+b[c] == 8
+h * 0x1B + 0x100 == 0x100
+b[c] final == 8
+r == [233, 19, 231, 177]
+Here is the cur_column: [47, 134, 20, 84]
+r original: [47, 134, 20, 84]
+b[c] == 94
+h * 0x1B + 0x100 == 0x100
+b[c] final == 94
+b[c] == 268
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 23
+b[c] == 40
+h * 0x1B + 0x100 == 0x100
+b[c] final == 40
+b[c] == 168
+h * 0x1B + 0x100 == 0x100
+b[c] final == 168
+r == [143, 80, 125, 75]
+Here is the cur_column: [158, 188, 161, 123]
+r original: [158, 188, 161, 123]
+b[c] == 316
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 39
+b[c] == 376
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 99
+b[c] == 322
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 89
+b[c] == 246
+h * 0x1B + 0x100 == 0x100
+b[c] final == 246
+r == [34, 126, 246, 82]
+Here is the cur_column: [39, 114, 114, 223]
+r original: [39, 114, 114, 223]
+b[c] == 78
+h * 0x1B + 0x100 == 0x100
+b[c] final == 78
+b[c] == 228
+h * 0x1B + 0x100 == 0x100
+b[c] final == 228
+b[c] == 228
+h * 0x1B + 0x100 == 0x100
+b[c] final == 228
+b[c] == 446
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 165
+r == [117, 138, 203, 204]
+Outputting this from MixColumns: [[233, 19, 231, 177], [143, 80, 125, 75], [34, 126, 246, 82], [117, 138, 203, 204]]
+round[7].m_col == e913e7b18f507d4b227ef652758acbcc
+Cor key thing: [[229, 131, 52, 163], [16, 81, 21, 81], [151, 155, 124, 241], [97, 105, 158, 224]]
+round[7].k_sch == 0c0370d00c01e622166b8accd6db3a2c
+round[8].start == 0c0370d00c01e622166b8accd6db3a2c
+round[8].s_box == fe7b5170fe7c8e93477f7e4bf6b98071
+input_mat[1] == [123, 124, 127, 185]
+after: [124, 127, 185, 123]
+round[8].s_row == fe7c7e71fe7f807047b95193f67b8e4b
+Here is the cur_column: [254, 124, 126, 113]
+r original: [254, 124, 126, 113]
+b[c] == 508
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 231
+b[c] == 248
+h * 0x1B + 0x100 == 0x100
+b[c] final == 248
+b[c] == 252
+h * 0x1B + 0x100 == 0x100
+b[c] final == 252
+b[c] == 226
+h * 0x1B + 0x100 == 0x100
+b[c] final == 226
+r == [108, 245, 237, 249]
+Here is the cur_column: [254, 127, 128, 112]
+r original: [254, 127, 128, 112]
+b[c] == 508
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 231
+b[c] == 254
+h * 0x1B + 0x100 == 0x100
+b[c] final == 254
+b[c] == 256
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 27
+b[c] == 224
+h * 0x1B + 0x100 == 0x100
+b[c] final == 224
+r == [150, 235, 10, 6]
+Here is the cur_column: [71, 185, 81, 147]
+r original: [71, 185, 81, 147]
+b[c] == 142
+h * 0x1B + 0x100 == 0x100
+b[c] final == 142
+b[c] == 370
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 105
+b[c] == 162
+h * 0x1B + 0x100 == 0x100
+b[c] final == 162
+b[c] == 294
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 61
+r == [156, 78, 242, 28]
+Here is the cur_column: [246, 123, 142, 75]
+r original: [246, 123, 142, 75]
+b[c] == 492
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 247
+b[c] == 246
+h * 0x1B + 0x100 == 0x100
+b[c] final == 246
+b[c] == 284
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 7
+b[c] == 150
+h * 0x1B + 0x100 == 0x100
+b[c] final == 150
+r == [191, 194, 87, 98]
+Outputting this from MixColumns: [[108, 245, 237, 249], [150, 235, 10, 6], [156, 78, 242, 28], [191, 194, 87, 98]]
+round[8].m_col == 6cf5edf996eb0a069c4ef21cbfc25762
+Cor key thing: [[30, 153, 124, 255], [160, 83, 67, 18], [55, 9, 158, 5], [42, 22, 119, 30]]
+round[8].k_sch == 7255dad30fb80310e00d6c6b40d0527c
+round[9].start == 7255dad30fb80310e00d6c6b40d0527c
+round[9].s_box == 40fc5766766c7bcae1d7507f09700010
+input_mat[1] == [252, 108, 215, 112]
+after: [108, 215, 112, 252]
+round[9].s_row == 406c501076d70066e17057ca09fc7b7f
+Here is the cur_column: [64, 108, 80, 16]
+r original: [64, 108, 80, 16]
+b[c] == 128
+h * 0x1B + 0x100 == 0x100
+b[c] final == 128
+b[c] == 216
+h * 0x1B + 0x100 == 0x100
+b[c] final == 216
+b[c] == 160
+h * 0x1B + 0x100 == 0x100
+b[c] final == 160
+b[c] == 32
+h * 0x1B + 0x100 == 0x100
+b[c] final == 32
+r == [116, 120, 188, 220]
+Here is the cur_column: [118, 215, 0, 102]
+r original: [118, 215, 0, 102]
+b[c] == 236
+h * 0x1B + 0x100 == 0x100
+b[c] final == 236
+b[c] == 430
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 181
+b[c] == 0
+h * 0x1B + 0x100 == 0x100
+b[c] final == 0
+b[c] == 204
+h * 0x1B + 0x100 == 0x100
+b[c] final == 204
+r == [232, 165, 11, 129]
+Here is the cur_column: [225, 112, 87, 202]
+r original: [225, 112, 87, 202]
+b[c] == 450
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 217
+b[c] == 224
+h * 0x1B + 0x100 == 0x100
+b[c] final == 224
+b[c] == 174
+h * 0x1B + 0x100 == 0x100
+b[c] final == 174
+b[c] == 404
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 143
+r == [212, 50, 122, 144]
+Here is the cur_column: [9, 252, 123, 127]
+r original: [9, 252, 123, 127]
+b[c] == 18
+h * 0x1B + 0x100 == 0x100
+b[c] final == 18
+b[c] == 504
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 227
+b[c] == 246
+h * 0x1B + 0x100 == 0x100
+b[c] final == 246
+b[c] == 254
+h * 0x1B + 0x100 == 0x100
+b[c] final == 254
+r == [9, 24, 130, 98]
+Outputting this from MixColumns: [[116, 120, 188, 220], [232, 165, 11, 129], [212, 50, 122, 144], [9, 24, 130, 98]]
+round[9].m_col == 7478bcdce8a50b81d4327a9009188262
+Cor key thing: [[221, 126, 96, 249], [126, 47, 143, 220], [14, 255, 200, 193], [136, 104, 66, 84]]
+round[9].k_sch == a906b254968af4e9b4bdb2d2f0c44336
+round[10].start == a906b254968af4e9b4bdb2d2f0c44336
+round[10].s_box == d36f3720907ebf1e8d7a37b58c1c1a05
+input_mat[1] == [111, 126, 122, 28]
+after: [126, 122, 28, 111]
+round[10].s_row == d37e3705907a1a208d1c371e8c6fbfb5
+Here is the cur_column: [211, 126, 55, 5]
+r original: [211, 126, 55, 5]
+b[c] == 422
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 189
+b[c] == 252
+h * 0x1B + 0x100 == 0x100
+b[c] final == 252
+b[c] == 110
+h * 0x1B + 0x100 == 0x100
+b[c] final == 110
+b[c] == 10
+h * 0x1B + 0x100 == 0x100
+b[c] final == 10
+r == [13, 115, 204, 45]
+Here is the cur_column: [144, 122, 26, 32]
+r original: [144, 122, 26, 32]
+b[c] == 288
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 59
+b[c] == 244
+h * 0x1B + 0x100 == 0x100
+b[c] final == 244
+b[c] == 52
+h * 0x1B + 0x100 == 0x100
+b[c] final == 52
+b[c] == 64
+h * 0x1B + 0x100 == 0x100
+b[c] final == 64
+r == [143, 106, 190, 139]
+Here is the cur_column: [141, 28, 55, 30]
+r original: [141, 28, 55, 30]
+b[c] == 282
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 1
+b[c] == 56
+h * 0x1B + 0x100 == 0x100
+b[c] final == 56
+b[c] == 110
+h * 0x1B + 0x100 == 0x100
+b[c] final == 110
+b[c] == 60
+h * 0x1B + 0x100 == 0x100
+b[c] final == 60
+r == [12, 242, 221, 155]
+Here is the cur_column: [140, 111, 191, 181]
+r original: [140, 111, 191, 181]
+b[c] == 280
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 3
+b[c] == 222
+h * 0x1B + 0x100 == 0x100
+b[c] final == 222
+b[c] == 382
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 101
+b[c] == 362
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 113
+r == [184, 61, 66, 46]
+Outputting this from MixColumns: [[13, 115, 204, 45], [143, 106, 190, 139], [12, 242, 221, 155], [184, 61, 66, 46]]
+round[10].m_col == 0d73cc2d8f6abe8b0cf2dd9bb83d422e
+Cor key thing: [[133, 122, 192, 190], [159, 141, 192, 239], [95, 90, 41, 214], [35, 61, 82, 58]]
+round[10].k_sch == 88ec930ef5e7e4b6cc32f4c906d29414
+round[11].start == 88ec930ef5e7e4b6cc32f4c906d29414
+round[11].s_box == c4cedcabe694694e4b23bfdd6fb522fa
+input_mat[1] == [206, 148, 35, 181]
+after: [148, 35, 181, 206]
+round[11].s_row == c494bffae62322ab4bb5dc4e6fce69dd
+Here is the cur_column: [196, 148, 191, 250]
+r original: [196, 148, 191, 250]
+b[c] == 392
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 147
+b[c] == 296
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 51
+b[c] == 382
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 101
+b[c] == 500
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 239
+r == [113, 215, 32, 147]
+Here is the cur_column: [230, 35, 34, 171]
+r original: [230, 35, 34, 171]
+b[c] == 460
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 215
+b[c] == 70
+h * 0x1B + 0x100 == 0x100
+b[c] final == 70
+b[c] == 68
+h * 0x1B + 0x100 == 0x100
+b[c] final == 68
+b[c] == 342
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 77
+r == [59, 109, 103, 125]
+Here is the cur_column: [75, 181, 220, 78]
+r original: [75, 181, 220, 78]
+b[c] == 150
+h * 0x1B + 0x100 == 0x100
+b[c] final == 150
+b[c] == 362
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 113
+b[c] == 440
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 163
+b[c] == 156
+h * 0x1B + 0x100 == 0x100
+b[c] final == 156
+r == [192, 11, 143, 40]
+Here is the cur_column: [111, 206, 105, 221]
+r original: [111, 206, 105, 221]
+b[c] == 222
+h * 0x1B + 0x100 == 0x100
+b[c] final == 222
+b[c] == 412
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 135
+b[c] == 210
+h * 0x1B + 0x100 == 0x100
+b[c] final == 210
+b[c] == 442
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 161
+r == [35, 142, 15, 183]
+Outputting this from MixColumns: [[113, 215, 32, 147], [59, 109, 103, 125], [192, 11, 143, 40], [35, 142, 15, 183]]
+round[11].m_col == 71d720933b6d677dc00b8f28238e0fb7
+Cor key thing: [[222, 39, 162, 216], [96, 188, 35, 174], [30, 223, 128, 218], [120, 44, 15, 50]]
+round[11].k_sch == afb73eeb1cd1b85162280f27fb20d585
+round[12].s_box == 79a9b2e99c3e6cd1aa3476cc0fb70397
+input_mat[1] == [169, 62, 52, 183]
+after: [62, 52, 183, 169]
+round[12].s_row == 793e76979c3403e9aab7b2d10fa96ccc
+Cor key thing: [[164, 26, 196, 227], [151, 120, 24, 164], [10, 220, 194, 29], [51, 9, 113, 93]]
+round[12].k_sch == dda97ca4864cdfe06eaf70a0ec0d7191
+Final state after encryption: dda97ca4864cdfe06eaf70a0ec0d7191
+Here is the encrypted data: dda97ca4864cdfe06eaf70a0ec0d7191
+round[0].iinput: dda97ca4864cdfe06eaf70a0ec0d7191
+num_rounds-1 == 12
+len(W_list) == 13
+Cor key thing: [[164, 26, 196, 227], [151, 120, 24, 164], [10, 220, 194, 29], [51, 9, 113, 93]]
+round[0].ik_sch == a4970a331a78dc09c418c271e3a41d5d
+round[1].istart: 793e76979c3403e9aab7b2d10fa96ccc
+round[1].is_row: 79a9b2e99c3e6cd1aa3476cc0fb70397
+Cor key thing: [[222, 39, 162, 216], [96, 188, 35, 174], [30, 223, 128, 218], [120, 44, 15, 50]]
+round[1].ik_sch == de601e7827bcdf2ca223800fd8aeda32
+round[1].is_box: 71d720933b6d677dc00b8f28238e0fb7
+Here is the cur_column: [113, 215, 32, 147]
+cur_column: [113, 215, 32, 147]
+output from rev_mix_column: [196, 148, 191, 250]
+Here is the cur_column: [59, 109, 103, 125]
+cur_column: [59, 109, 103, 125]
+output from rev_mix_column: [230, 35, 34, 171]
+Here is the cur_column: [192, 11, 143, 40]
+cur_column: [192, 11, 143, 40]
+output from rev_mix_column: [75, 181, 220, 78]
+Here is the cur_column: [35, 142, 15, 183]
+cur_column: [35, 142, 15, 183]
+output from rev_mix_column: [111, 206, 105, 221]
+Outputting this from MixColumns: [[196, 148, 191, 250], [230, 35, 34, 171], [75, 181, 220, 78], [111, 206, 105, 221]]
+round[2].istart: c494bffae62322ab4bb5dc4e6fce69dd
+round[2].is_row: c4cedcabe694694e4b23bfdd6fb522fa
+Cor key thing: [[133, 122, 192, 190], [159, 141, 192, 239], [95, 90, 41, 214], [35, 61, 82, 58]]
+round[2].ik_sch == 859f5f237a8d5a3dc0c02952beefd63a
+round[2].is_box: 0d73cc2d8f6abe8b0cf2dd9bb83d422e
+Here is the cur_column: [13, 115, 204, 45]
+cur_column: [13, 115, 204, 45]
+output from rev_mix_column: [211, 126, 55, 5]
+Here is the cur_column: [143, 106, 190, 139]
+cur_column: [143, 106, 190, 139]
+output from rev_mix_column: [144, 122, 26, 32]
+Here is the cur_column: [12, 242, 221, 155]
+cur_column: [12, 242, 221, 155]
+output from rev_mix_column: [141, 28, 55, 30]
+Here is the cur_column: [184, 61, 66, 46]
+cur_column: [184, 61, 66, 46]
+output from rev_mix_column: [140, 111, 191, 181]
+Outputting this from MixColumns: [[211, 126, 55, 5], [144, 122, 26, 32], [141, 28, 55, 30], [140, 111, 191, 181]]
+round[3].istart: d37e3705907a1a208d1c371e8c6fbfb5
+round[3].is_row: d36f3720907ebf1e8d7a37b58c1c1a05
+Cor key thing: [[221, 126, 96, 249], [126, 47, 143, 220], [14, 255, 200, 193], [136, 104, 66, 84]]
+round[3].ik_sch == dd7e0e887e2fff68608fc842f9dcc154
+round[3].is_box: 7478bcdce8a50b81d4327a9009188262
+Here is the cur_column: [116, 120, 188, 220]
+cur_column: [116, 120, 188, 220]
+output from rev_mix_column: [64, 108, 80, 16]
+Here is the cur_column: [232, 165, 11, 129]
+cur_column: [232, 165, 11, 129]
+output from rev_mix_column: [118, 215, 0, 102]
+Here is the cur_column: [212, 50, 122, 144]
+cur_column: [212, 50, 122, 144]
+output from rev_mix_column: [225, 112, 87, 202]
+Here is the cur_column: [9, 24, 130, 98]
+cur_column: [9, 24, 130, 98]
+output from rev_mix_column: [9, 252, 123, 127]
+Outputting this from MixColumns: [[64, 108, 80, 16], [118, 215, 0, 102], [225, 112, 87, 202], [9, 252, 123, 127]]
+round[4].istart: 406c501076d70066e17057ca09fc7b7f
+round[4].is_row: 40fc5766766c7bcae1d7507f09700010
+Cor key thing: [[30, 153, 124, 255], [160, 83, 67, 18], [55, 9, 158, 5], [42, 22, 119, 30]]
+round[4].ik_sch == 1ea0372a995309167c439e77ff12051e
+round[4].is_box: 6cf5edf996eb0a069c4ef21cbfc25762
+Here is the cur_column: [108, 245, 237, 249]
+cur_column: [108, 245, 237, 249]
+output from rev_mix_column: [254, 124, 126, 113]
+Here is the cur_column: [150, 235, 10, 6]
+cur_column: [150, 235, 10, 6]
+output from rev_mix_column: [254, 127, 128, 112]
+Here is the cur_column: [156, 78, 242, 28]
+cur_column: [156, 78, 242, 28]
+output from rev_mix_column: [71, 185, 81, 147]
+Here is the cur_column: [191, 194, 87, 98]
+cur_column: [191, 194, 87, 98]
+output from rev_mix_column: [246, 123, 142, 75]
+Outputting this from MixColumns: [[254, 124, 126, 113], [254, 127, 128, 112], [71, 185, 81, 147], [246, 123, 142, 75]]
+round[5].istart: fe7c7e71fe7f807047b95193f67b8e4b
+round[5].is_row: fe7b5170fe7c8e93477f7e4bf6b98071
+Cor key thing: [[229, 131, 52, 163], [16, 81, 21, 81], [151, 155, 124, 241], [97, 105, 158, 224]]
+round[5].ik_sch == e510976183519b6934157c9ea351f1e0
+round[5].is_box: e913e7b18f507d4b227ef652758acbcc
+Here is the cur_column: [233, 19, 231, 177]
+cur_column: [233, 19, 231, 177]
+output from rev_mix_column: [133, 229, 200, 4]
+Here is the cur_column: [143, 80, 125, 75]
+cur_column: [143, 80, 125, 75]
+output from rev_mix_column: [47, 134, 20, 84]
+Here is the cur_column: [34, 126, 246, 82]
+cur_column: [34, 126, 246, 82]
+output from rev_mix_column: [158, 188, 161, 123]
+Here is the cur_column: [117, 138, 203, 204]
+cur_column: [117, 138, 203, 204]
+output from rev_mix_column: [39, 114, 114, 223]
+Outputting this from MixColumns: [[133, 229, 200, 4], [47, 134, 20, 84], [158, 188, 161, 123], [39, 114, 114, 223]]
+round[6].istart: 85e5c8042f8614549ebca17b277272df
+round[6].is_row: 8572a1542fe5727b9e86c8df27bc1404
+Cor key thing: [[245, 151, 189, 135], [1, 68, 241, 243], [133, 141, 198, 62], [114, 126, 202, 60]]
+round[6].ik_sch == f501857297448d7ebdf1c6ca87f33e3c
+round[6].is_box: 921f748fd96e937d622d7725ba8ba50c
+Here is the cur_column: [146, 31, 116, 143]
+cur_column: [146, 31, 116, 143]
+output from rev_mix_column: [205, 84, 199, 40]
+Here is the cur_column: [217, 110, 147, 125]
+cur_column: [217, 110, 147, 125]
+output from rev_mix_column: [56, 100, 192, 197]
+Here is the cur_column: [98, 45, 119, 37]
+cur_column: [98, 45, 119, 37]
+output from rev_mix_column: [93, 76, 114, 126]
+Here is the cur_column: [186, 139, 165, 12]
+cur_column: [186, 139, 165, 12]
+output from rev_mix_column: [144, 201, 164, 101]
+Outputting this from MixColumns: [[205, 84, 199, 40], [56, 100, 192, 197], [93, 76, 114, 126], [144, 201, 164, 101]]
+round[7].istart: cd54c7283864c0c55d4c727e90c9a465
+round[7].is_row: cdc972c53854a47e5d64c765904cc028
+Cor key thing: [[42, 58, 98, 102], [181, 2, 227, 65], [75, 248, 169, 12], [180, 246, 93, 8]]
+round[7].ik_sch == 2ab54bb43a02f8f662e3a95d66410c08
+round[7].is_box: aaa755b34cffe57cef6f98e1f01c13e6
+Here is the cur_column: [170, 167, 85, 179]
+cur_column: [170, 167, 85, 179]
+output from rev_mix_column: [147, 250, 161, 35]
+Here is the cur_column: [76, 255, 229, 124]
+cur_column: [76, 255, 229, 124]
+output from rev_mix_column: [194, 144, 63, 71]
+Here is the cur_column: [239, 111, 152, 225]
+cur_column: [239, 111, 152, 225]
+output from rev_mix_column: [67, 228, 221, 131]
+Here is the cur_column: [240, 28, 19, 230]
+cur_column: [240, 28, 19, 230]
+output from rev_mix_column: [67, 22, 146, 222]
+Outputting this from MixColumns: [[147, 250, 161, 35], [194, 144, 63, 71], [67, 228, 221, 131], [67, 22, 146, 222]]
+round[8].istart: 93faa123c2903f4743e4dd83431692de
+round[8].is_row: 9316dd47c2fa92834390a1de43e43f23
+Cor key thing: [[88, 4, 126, 98], [225, 162, 255, 69], [81, 165, 181, 8], [171, 85, 65, 12]]
+round[8].ik_sch == 58e151ab04a2a5557effb5416245080c
+round[8].is_box: 7a1e98bdacb6d1141a6944dd06eb2d3e
+Here is the cur_column: [122, 30, 152, 189]
+cur_column: [122, 30, 152, 189]
+output from rev_mix_column: [104, 204, 8, 237]
+Here is the cur_column: [172, 182, 209, 20]
+cur_column: [172, 182, 209, 20]
+output from rev_mix_column: [10, 187, 210, 188]
+Here is the cur_column: [26, 105, 68, 221]
+cur_column: [26, 105, 68, 221]
+output from rev_mix_column: [100, 46, 245, 85]
+Here is the cur_column: [6, 235, 45, 62]
+cur_column: [6, 235, 45, 62]
+output from rev_mix_column: [36, 74, 232, 120]
+Outputting this from MixColumns: [[104, 204, 8, 237], [10, 187, 210, 188], [100, 46, 245, 85], [36, 74, 232, 120]]
+round[9].istart: 68cc08ed0abbd2bc642ef555244ae878
+round[9].is_row: 684af5bc0acce85564bb0878242ed2ed
+Cor key thing: [[64, 28, 72, 16], [249, 186, 240, 183], [73, 189, 67, 179], [179, 77, 184, 66]]
+round[9].ik_sch == 40f949b31cbabd4d48f043b810b7b342
+round[9].is_box: b7a53ecbbf9d75a0c40efc79b674cc11
+Here is the cur_column: [183, 165, 62, 203]
+cur_column: [183, 165, 62, 203]
+output from rev_mix_column: [31, 181, 67, 14]
+Here is the cur_column: [191, 157, 117, 160]
+cur_column: [191, 157, 117, 160]
+output from rev_mix_column: [240, 172, 207, 100]
+Here is the cur_column: [196, 14, 252, 121]
+cur_column: [196, 14, 252, 121]
+output from rev_mix_column: [170, 55, 12, 222]
+Here is the cur_column: [182, 116, 204, 17]
+cur_column: [182, 116, 204, 17]
+output from rev_mix_column: [61, 119, 121, 44]
+Outputting this from MixColumns: [[31, 181, 67, 14], [240, 172, 207, 100], [170, 55, 12, 222], [61, 119, 121, 44]]
+round[10].istart: 1fb5430ef0accf64aa370cde3d77792c
+round[10].is_row: 1f770c64f0b579deaaac432c3d37cf0e
+Cor key thing: [[84, 88, 72, 92], [74, 71, 86, 67], [254, 240, 226, 244], [245, 250, 233, 254]]
+round[10].ik_sch == 544afef55847f0fa4856e2e95c43f4fe
+round[10].is_box: 9f487f794f955f662afc86abd7f1ab29
+Here is the cur_column: [159, 72, 127, 121]
+cur_column: [159, 72, 127, 121]
+output from rev_mix_column: [132, 225, 221, 105]
+Here is the cur_column: [79, 149, 95, 102]
+cur_column: [79, 149, 95, 102]
+output from rev_mix_column: [26, 65, 215, 111]
+Here is the cur_column: [42, 252, 134, 171]
+cur_column: [42, 252, 134, 171]
+output from rev_mix_column: [121, 45, 56, 151]
+Here is the cur_column: [215, 241, 171, 41]
+cur_column: [215, 241, 171, 41]
+output from rev_mix_column: [131, 251, 172, 112]
+Outputting this from MixColumns: [[132, 225, 221, 105], [26, 65, 215, 111], [121, 45, 56, 151], [131, 251, 172, 112]]
+round[11].istart: 84e1dd691a41d76f792d389783fbac70
+round[11].is_row: 84fb386f1ae1ac977941dd70832dd769
+Cor key thing: [[16, 20, 88, 92], [17, 21, 70, 67], [18, 22, 242, 244], [19, 23, 249, 254]]
+round[11].ik_sch == 10111213141516175846f2f95c43f4fe
+round[11].is_box: 5f72641557f5bc92f7be3b291db9f91a
+Here is the cur_column: [95, 114, 100, 21]
+cur_column: [95, 114, 100, 21]
+output from rev_mix_column: [99, 83, 224, 140]
+Here is the cur_column: [87, 245, 188, 146]
+cur_column: [87, 245, 188, 146]
+output from rev_mix_column: [9, 96, 225, 4]
+Here is the cur_column: [247, 190, 59, 41]
+cur_column: [247, 190, 59, 41]
+output from rev_mix_column: [205, 112, 183, 81]
+Here is the cur_column: [29, 185, 249, 26]
+cur_column: [29, 185, 249, 26]
+output from rev_mix_column: [186, 202, 208, 231]
+Outputting this from MixColumns: [[99, 83, 224, 140], [9, 96, 225, 4], [205, 112, 183, 81], [186, 202, 208, 231]]
+End of the loop!!!!
+Cor key thing: [[0, 4, 8, 12], [1, 5, 9, 13], [2, 6, 10, 14], [3, 7, 11, 15]]
+Here is the final decrypted result: 00112233445566778899aabbccddeeff
+Done!
+test_enc_dec passed!!!
+Now testing test_enc_dec_256
+Here is the key: b'\x00\x01\x02\x03\x04\x05\x06\x07\x08\t\n\x0b\x0c\r\x0e\x0f\x10\x11\x12\x13\x14\x15\x16\x17\x18\x19\x1a\x1b\x1c\x1d\x1e\x1f'
+[[0, 1, 2, 3], [4, 5, 6, 7], [8, 9, 10, 11], [12, 13, 14, 15]]
+[[16, 17, 18, 19], [20, 21, 22, 23], [24, 25, 26, 27], [28, 29, 30, 31]]
+[[165, 115, 194, 159], [161, 118, 196, 152], [169, 127, 206, 147], [165, 114, 192, 156]]
+[[22, 81, 168, 205], [2, 68, 190, 218], [26, 93, 164, 193], [6, 64, 186, 222]]
+[[174, 135, 223, 240], [15, 241, 27, 104], [166, 142, 213, 251], [3, 252, 21, 103]]
+[[109, 225, 241, 72], [111, 165, 79, 146], [117, 248, 235, 83], [115, 184, 81, 141]]
+[[198, 86, 130, 127], [201, 167, 153, 23], [111, 41, 76, 236], [108, 213, 89, 139]]
+[[61, 226, 58, 117], [82, 71, 117, 231], [39, 191, 158, 180], [84, 7, 207, 57]]
+[[11, 220, 144, 95], [194, 123, 9, 72], [173, 82, 69, 164], [193, 135, 28, 47]]
+[[69, 245, 166, 96], [23, 178, 211, 135], [48, 13, 77, 51], [100, 10, 130, 10]]
+[[124, 207, 247, 28], [190, 180, 254, 84], [19, 230, 187, 240], [210, 97, 167, 223]]
+[[240, 26, 250, 254], [231, 168, 41, 121], [215, 165, 100, 74], [179, 175, 230, 64]]
+[[37, 65, 254, 113], [155, 245, 0, 37], [136, 19, 187, 213], [90, 114, 28, 10]]
+[[78, 90, 102, 153], [169, 242, 79, 224], [126, 87, 43, 170], [205, 248, 205, 234]]
+[[36, 252, 121, 204], [191, 9, 121, 233], [55, 26, 194, 60], [109, 104, 222, 54]]
+==============================
+000102030405060708090a0b0c0d0e0f
+101112131415161718191a1b1c1d1e1f
+a573c29fa176c498a97fce93a572c09c
+1651a8cd0244beda1a5da4c10640bade
+ae87dff00ff11b68a68ed5fb03fc1567
+6de1f1486fa54f9275f8eb5373b8518d
+c656827fc9a799176f294cec6cd5598b
+3de23a75524775e727bf9eb45407cf39
+0bdc905fc27b0948ad5245a4c1871c2f
+45f5a66017b2d387300d4d33640a820a
+7ccff71cbeb4fe5413e6bbf0d261a7df
+f01afafee7a82979d7a5644ab3afe640
+2541fe719bf500258813bbd55a721c0a
+4e5a6699a9f24fe07e572baacdf8cdea
+24fc79ccbf0979e9371ac23c6d68de36
+==============================
+Here is the expanded key: [[[0, 4, 8, 12], [1, 5, 9, 13], [2, 6, 10, 14], [3, 7, 11, 15]], [[16, 20, 24, 28], [17, 21, 25, 29], [18, 22, 26, 30], [19, 23, 27, 31]], [[165, 161, 169, 165], [115, 118, 127, 114], [194, 196, 206, 192], [159, 152, 147, 156]], [[22, 2, 26, 6], [81, 68, 93, 64], [168, 190, 164, 186], [205, 218, 193, 222]], [[174, 15, 166, 3], [135, 241, 142, 252], [223, 27, 213, 21], [240, 104, 251, 103]], [[109, 111, 117, 115], [225, 165, 248, 184], [241, 79, 235, 81], [72, 146, 83, 141]], [[198, 201, 111, 108], [86, 167, 41, 213], [130, 153, 76, 89], [127, 23, 236, 139]], [[61, 82, 39, 84], [226, 71, 191, 7], [58, 117, 158, 207], [117, 231, 180, 57]], [[11, 194, 173, 193], [220, 123, 82, 135], [144, 9, 69, 28], [95, 72, 164, 47]], [[69, 23, 48, 100], [245, 178, 13, 10], [166, 211, 77, 130], [96, 135, 51, 10]], [[124, 190, 19, 210], [207, 180, 230, 97], [247, 254, 187, 167], [28, 84, 240, 223]], [[240, 231, 215, 179], [26, 168, 165, 175], [250, 41, 100, 230], [254, 121, 74, 64]], [[37, 155, 136, 90], [65, 245, 19, 114], [254, 0, 187, 28], [113, 37, 213, 10]], [[78, 169, 126, 205], [90, 242, 87, 248], [102, 79, 43, 205], [153, 224, 170, 234]], [[36, 191, 55, 109], [252, 9, 26, 104], [121, 121, 194, 222], [204, 233, 60, 54]]]
+Here is the length of the key: 15
+round[0].input : 00112233445566778899aabbccddeeff
+Cor key thing: [[0, 4, 8, 12], [1, 5, 9, 13], [2, 6, 10, 14], [3, 7, 11, 15]]
+round[0].k_sch : 0004080c0105090d02060a0e03070b0f1014181c1115191d12161a1e13171b1fa5a1a9a573767f72c2c4cec09f98939c16021a0651445d40a8bea4bacddac1deae0fa60387f18efcdf1bd515f068fb676d6f7573e1a5f8b8f14feb514892538dc6c96f6c56a729d582994c597f17ec8b3d522754e247bf073a759ecf75e7b4390bc2adc1dc7b52879009451c5f48a42f45173064f5b20d0aa6d34d826087330a7cbe13d2cfb4e661f7febba71c54f0dff0e7d7b31aa8a5affa2964e6fe794a40259b885a41f51372fe00bb1c7125d50a4ea97ecd5af257f8664f2bcd99e0aaea24bf376dfc091a687979c2decce93c36
+round[1].start == 00102030405060708090a0b0c0d0e0f0
+round[1].s_box == 63cab7040953d051cd60e0e7ba70e18c
+input_mat[1] == [202, 83, 96, 112]
+after: [83, 96, 112, 202]
+round[1].s_row == 6353e08c0960e104cd70b751bacad0e7
+Here is the cur_column: [99, 83, 224, 140]
+r original: [99, 83, 224, 140]
+b[c] == 198
+h * 0x1B + 0x100 == 0x100
+b[c] final == 198
+b[c] == 166
+h * 0x1B + 0x100 == 0x100
+b[c] final == 166
+b[c] == 448
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 219
+b[c] == 280
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 3
+r == [95, 114, 100, 21]
+Here is the cur_column: [9, 96, 225, 4]
+r original: [9, 96, 225, 4]
+b[c] == 18
+h * 0x1B + 0x100 == 0x100
+b[c] final == 18
+b[c] == 192
+h * 0x1B + 0x100 == 0x100
+b[c] final == 192
+b[c] == 450
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 217
+b[c] == 8
+h * 0x1B + 0x100 == 0x100
+b[c] final == 8
+r == [87, 245, 188, 146]
+Here is the cur_column: [205, 112, 183, 81]
+r original: [205, 112, 183, 81]
+b[c] == 410
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 129
+b[c] == 224
+h * 0x1B + 0x100 == 0x100
+b[c] final == 224
+b[c] == 366
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 117
+b[c] == 162
+h * 0x1B + 0x100 == 0x100
+b[c] final == 162
+r == [247, 190, 59, 41]
+Here is the cur_column: [186, 202, 208, 231]
+r original: [186, 202, 208, 231]
+b[c] == 372
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 111
+b[c] == 404
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 143
+b[c] == 416
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 187
+b[c] == 462
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 213
+r == [29, 185, 249, 26]
+Outputting this from MixColumns: [[95, 114, 100, 21], [87, 245, 188, 146], [247, 190, 59, 41], [29, 185, 249, 26]]
+round[1].m_col == 5f72641557f5bc92f7be3b291db9f91a
+Cor key thing: [[16, 20, 24, 28], [17, 21, 25, 29], [18, 22, 26, 30], [19, 23, 27, 31]]
+round[1].k_sch == 4f63760643e0aa85efa7213201a4e705
+round[2].start == 4f63760643e0aa85efa7213201a4e705
+round[2].s_box == 84fb386f1ae1ac97df5cfd237c49946b
+input_mat[1] == [251, 225, 92, 73]
+after: [225, 92, 73, 251]
+round[2].s_row == 84e1fd6b1a5c946fdf4938977cfbac23
+Here is the cur_column: [132, 225, 253, 107]
+r original: [132, 225, 253, 107]
+b[c] == 264
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 19
+b[c] == 450
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 217
+b[c] == 506
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 225
+b[c] == 214
+h * 0x1B + 0x100 == 0x100
+b[c] final == 214
+r == [189, 42, 57, 93]
+Here is the cur_column: [26, 92, 148, 111]
+r original: [26, 92, 148, 111]
+b[c] == 52
+h * 0x1B + 0x100 == 0x100
+b[c] final == 52
+b[c] == 184
+h * 0x1B + 0x100 == 0x100
+b[c] final == 184
+b[c] == 296
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 51
+b[c] == 222
+h * 0x1B + 0x100 == 0x100
+b[c] final == 222
+r == [43, 106, 196, 56]
+Here is the cur_column: [223, 73, 56, 151]
+r original: [223, 73, 56, 151]
+b[c] == 446
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 165
+b[c] == 146
+h * 0x1B + 0x100 == 0x100
+b[c] final == 146
+b[c] == 112
+h * 0x1B + 0x100 == 0x100
+b[c] final == 112
+b[c] == 302
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 53
+r == [209, 146, 68, 62]
+Here is the cur_column: [124, 251, 172, 35]
+r original: [124, 251, 172, 35]
+b[c] == 248
+h * 0x1B + 0x100 == 0x100
+b[c] final == 248
+b[c] == 502
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 237
+b[c] == 344
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 67
+b[c] == 70
+h * 0x1B + 0x100 == 0x100
+b[c] final == 70
+r == [97, 93, 161, 149]
+Outputting this from MixColumns: [[189, 42, 57, 93], [43, 106, 196, 56], [209, 146, 68, 62], [97, 93, 161, 149]]
+round[2].m_col == bd2a395d2b6ac438d192443e615da195
+Cor key thing: [[165, 161, 169, 165], [115, 118, 127, 114], [194, 196, 206, 192], [159, 152, 147, 156]]
+round[2].k_sch == 1859fbc28a1c00a078ed8aadc42f6109
+round[3].start == 1859fbc28a1c00a078ed8aadc42f6109
+round[3].s_box == adcb0f257e9c63e0bc557e951c15ef01
+input_mat[1] == [203, 156, 85, 21]
+after: [156, 85, 21, 203]
+round[3].s_row == ad9c7e017e55ef25bc150fe01ccb6395
+Here is the cur_column: [173, 156, 126, 1]
+r original: [173, 156, 126, 1]
+b[c] == 346
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 65
+b[c] == 312
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 35
+b[c] == 252
+h * 0x1B + 0x100 == 0x100
+b[c] final == 252
+b[c] == 2
+h * 0x1B + 0x100 == 0x100
+b[c] final == 2
+r == [129, 13, 206, 12]
+Here is the cur_column: [126, 85, 239, 37]
+r original: [126, 85, 239, 37]
+b[c] == 252
+h * 0x1B + 0x100 == 0x100
+b[c] final == 252
+b[c] == 170
+h * 0x1B + 0x100 == 0x100
+b[c] final == 170
+b[c] == 478
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 197
+b[c] == 74
+h * 0x1B + 0x100 == 0x100
+b[c] final == 74
+r == [201, 219, 129, 114]
+Here is the cur_column: [188, 21, 15, 224]
+r original: [188, 21, 15, 224]
+b[c] == 376
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 99
+b[c] == 42
+h * 0x1B + 0x100 == 0x100
+b[c] final == 42
+b[c] == 30
+h * 0x1B + 0x100 == 0x100
+b[c] final == 30
+b[c] == 448
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 219
+r == [179, 103, 140, 30]
+Here is the cur_column: [28, 203, 99, 149]
+r original: [28, 203, 99, 149]
+b[c] == 56
+h * 0x1B + 0x100 == 0x100
+b[c] final == 56
+b[c] == 406
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 141
+b[c] == 198
+h * 0x1B + 0x100 == 0x100
+b[c] final == 198
+b[c] == 298
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 49
+r == [136, 161, 181, 189]
+Outputting this from MixColumns: [[129, 13, 206, 12], [201, 219, 129, 114], [179, 103, 140, 30], [136, 161, 181, 189]]
+round[3].m_col == 810dce0cc9db8172b3678c1e88a1b5bd
+Cor key thing: [[22, 2, 26, 6], [81, 68, 93, 64], [168, 190, 164, 186], [205, 218, 193, 222]]
+round[3].k_sch == 975c66c1cb9f3fa8a93a28df8ee10f63
+round[4].start == 975c66c1cb9f3fa8a93a28df8ee10f63
+round[4].s_box == 884a33781fdb75c2d380349e19f876fb
+input_mat[1] == [74, 219, 128, 248]
+after: [219, 128, 248, 74]
+round[4].s_row == 88db34fb1f807678d3f833c2194a759e
+Here is the cur_column: [136, 219, 52, 251]
+r original: [136, 219, 52, 251]
+b[c] == 272
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 11
+b[c] == 438
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 173
+b[c] == 104
+h * 0x1B + 0x100 == 0x100
+b[c] final == 104
+b[c] == 502
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 237
+r == [178, 130, 45, 129]
+Here is the cur_column: [31, 128, 118, 120]
+r original: [31, 128, 118, 120]
+b[c] == 62
+h * 0x1B + 0x100 == 0x100
+b[c] final == 62
+b[c] == 256
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 27
+b[c] == 236
+h * 0x1B + 0x100 == 0x100
+b[c] final == 236
+b[c] == 240
+h * 0x1B + 0x100 == 0x100
+b[c] final == 240
+r == [171, 230, 251, 39]
+Here is the cur_column: [211, 248, 51, 194]
+r original: [211, 248, 51, 194]
+b[c] == 422
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 189
+b[c] == 496
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 235
+b[c] == 102
+h * 0x1B + 0x100 == 0x100
+b[c] final == 102
+b[c] == 388
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 159
+r == [95, 175, 16, 58]
+Here is the cur_column: [25, 74, 117, 158]
+r original: [25, 74, 117, 158]
+b[c] == 50
+h * 0x1B + 0x100 == 0x100
+b[c] final == 50
+b[c] == 148
+h * 0x1B + 0x100 == 0x100
+b[c] final == 148
+b[c] == 234
+h * 0x1B + 0x100 == 0x100
+b[c] final == 234
+b[c] == 316
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 39
+r == [7, 140, 0, 51]
+Outputting this from MixColumns: [[178, 130, 45, 129], [171, 230, 251, 39], [95, 175, 16, 58], [7, 140, 0, 51]]
+round[4].m_col == b2822d81abe6fb275faf103a078c0033
+Cor key thing: [[174, 15, 166, 3], [135, 241, 142, 252], [223, 27, 213, 21], [240, 104, 251, 103]]
+round[4].k_sch == 1c05f271a417e04ff921c5c104701554
+round[5].start == 1c05f271a417e04ff921c5c104701554
+round[5].s_box == 9c6b89a349f0e18499fda678f2515920
+input_mat[1] == [107, 240, 253, 81]
+after: [240, 253, 81, 107]
+round[5].s_row == 9cf0a62049fd59a399518984f26be178
+Here is the cur_column: [156, 240, 166, 32]
+r original: [156, 240, 166, 32]
+b[c] == 312
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 35
+b[c] == 480
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 251
+b[c] == 332
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 87
+b[c] == 64
+h * 0x1B + 0x100 == 0x100
+b[c] final == 64
+r == [174, 182, 91, 169]
+Here is the cur_column: [73, 253, 89, 163]
+r original: [73, 253, 89, 163]
+b[c] == 146
+h * 0x1B + 0x100 == 0x100
+b[c] final == 146
+b[c] == 506
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 225
+b[c] == 178
+h * 0x1B + 0x100 == 0x100
+b[c] final == 178
+b[c] == 326
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 93
+r == [116, 224, 248, 34]
+Here is the cur_column: [153, 81, 137, 132]
+r original: [153, 81, 137, 132]
+b[c] == 306
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 41
+b[c] == 162
+h * 0x1B + 0x100 == 0x100
+b[c] final == 162
+b[c] == 274
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 9
+b[c] == 264
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 19
+r == [215, 63, 86, 123]
+Here is the cur_column: [242, 107, 225, 120]
+r original: [242, 107, 225, 120]
+b[c] == 484
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 255
+b[c] == 214
+h * 0x1B + 0x100 == 0x100
+b[c] final == 214
+b[c] == 450
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 217
+b[c] == 240
+h * 0x1B + 0x100 == 0x100
+b[c] final == 240
+r == [219, 100, 200, 119]
+Outputting this from MixColumns: [[174, 182, 91, 169], [116, 224, 248, 34], [215, 63, 86, 123], [219, 100, 200, 119]]
+round[5].m_col == aeb65ba974e0f822d73f567bdb64c877
+Cor key thing: [[109, 111, 117, 115], [225, 165, 248, 184], [241, 79, 235, 81], [72, 146, 83, 141]]
+round[5].k_sch == c357aae11b45b7b0a2c7bd28a8dc99fa
+round[6].start == c357aae11b45b7b0a2c7bd28a8dc99fa
+round[6].s_box == 2e5bacf8af6ea9e73ac67a34c286ee2d
+input_mat[1] == [91, 110, 198, 134]
+after: [110, 198, 134, 91]
+round[6].s_row == 2e6e7a2dafc6eef83a86ace7c25ba934
+Here is the cur_column: [46, 110, 122, 45]
+r original: [46, 110, 122, 45]
+b[c] == 92
+h * 0x1B + 0x100 == 0x100
+b[c] final == 92
+b[c] == 220
+h * 0x1B + 0x100 == 0x100
+b[c] final == 220
+b[c] == 244
+h * 0x1B + 0x100 == 0x100
+b[c] final == 244
+b[c] == 90
+h * 0x1B + 0x100 == 0x100
+b[c] final == 90
+r == [185, 81, 195, 60]
+Here is the cur_column: [175, 198, 238, 248]
+r original: [175, 198, 238, 248]
+b[c] == 350
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 69
+b[c] == 396
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 151
+b[c] == 476
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 199
+b[c] == 496
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 235
+r == [2, 233, 189, 41]
+Here is the cur_column: [58, 134, 172, 231]
+r original: [58, 134, 172, 231]
+b[c] == 116
+h * 0x1B + 0x100 == 0x100
+b[c] final == 116
+b[c] == 268
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 23
+b[c] == 344
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 67
+b[c] == 462
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 213
+r == [174, 37, 205, 177]
+Here is the cur_column: [194, 91, 169, 52]
+r original: [194, 91, 169, 52]
+b[c] == 388
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 159
+b[c] == 182
+h * 0x1B + 0x100 == 0x100
+b[c] final == 182
+b[c] == 338
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 73
+b[c] == 104
+h * 0x1B + 0x100 == 0x100
+b[c] final == 104
+r == [239, 160, 140, 199]
+Outputting this from MixColumns: [[185, 81, 195, 60], [2, 233, 189, 41], [174, 37, 205, 177], [239, 160, 140, 199]]
+round[6].m_col == b951c33c02e9bd29ae25cdb1efa08cc7
+Cor key thing: [[198, 201, 111, 108], [86, 167, 41, 213], [130, 153, 76, 89], [127, 23, 236, 139]]
+round[6].k_sch == 7f074143cb4e243ec10c815d8375d54c
+round[7].start == 7f074143cb4e243ec10c815d8375d54c
+round[7].s_box == d2c5831a1f2f36b278fe0c4cec9d0329
+input_mat[1] == [197, 47, 254, 157]
+after: [47, 254, 157, 197]
+round[7].s_row == d22f0c291ffe031a789d83b2ecc5364c
+Here is the cur_column: [210, 47, 12, 41]
+r original: [210, 47, 12, 41]
+b[c] == 420
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 191
+b[c] == 94
+h * 0x1B + 0x100 == 0x100
+b[c] final == 94
+b[c] == 24
+h * 0x1B + 0x100 == 0x100
+b[c] final == 24
+b[c] == 82
+h * 0x1B + 0x100 == 0x100
+b[c] final == 82
+r == [235, 177, 158, 28]
+Here is the cur_column: [31, 254, 3, 26]
+r original: [31, 254, 3, 26]
+b[c] == 62
+h * 0x1B + 0x100 == 0x100
+b[c] final == 62
+b[c] == 508
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 231
+b[c] == 6
+h * 0x1B + 0x100 == 0x100
+b[c] final == 6
+b[c] == 52
+h * 0x1B + 0x100 == 0x100
+b[c] final == 52
+r == [62, 231, 201, 232]
+Here is the cur_column: [120, 157, 131, 178]
+r original: [120, 157, 131, 178]
+b[c] == 240
+h * 0x1B + 0x100 == 0x100
+b[c] final == 240
+b[c] == 314
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 33
+b[c] == 262
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 29
+b[c] == 356
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 127
+r == [125, 117, 53, 233]
+Here is the cur_column: [236, 197, 54, 76]
+r original: [236, 197, 54, 76]
+b[c] == 472
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 195
+b[c] == 394
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 145
+b[c] == 108
+h * 0x1B + 0x100 == 0x100
+b[c] final == 108
+b[c] == 152
+h * 0x1B + 0x100 == 0x100
+b[c] final == 152
+r == [237, 107, 145, 68]
+Outputting this from MixColumns: [[235, 177, 158, 28], [62, 231, 201, 232], [125, 117, 53, 233], [237, 107, 145, 68]]
+round[7].m_col == ebb19e1c3ee7c9e87d7535e9ed6b9144
+Cor key thing: [[61, 82, 39, 84], [226, 71, 191, 7], [58, 117, 158, 207], [117, 231, 180, 57]]
+round[7].k_sch == d653a4696ca0bc0f5acaab5db96c5e7d
+round[8].start == d653a4696ca0bc0f5acaab5db96c5e7d
+round[8].s_box == f6ed49f950e06576be74624c565058ff
+input_mat[1] == [237, 224, 116, 80]
+after: [224, 116, 80, 237]
+round[8].s_row == f6e062ff507458f9be50497656ed654c
+Here is the cur_column: [246, 224, 98, 255]
+r original: [246, 224, 98, 255]
+b[c] == 492
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 247
+b[c] == 448
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 219
+b[c] == 196
+h * 0x1B + 0x100 == 0x100
+b[c] final == 196
+b[c] == 510
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 229
+r == [81, 116, 200, 102]
+Here is the cur_column: [80, 116, 88, 249]
+r original: [80, 116, 88, 249]
+b[c] == 160
+h * 0x1B + 0x100 == 0x100
+b[c] final == 160
+b[c] == 232
+h * 0x1B + 0x100 == 0x100
+b[c] final == 232
+b[c] == 176
+h * 0x1B + 0x100 == 0x100
+b[c] final == 176
+b[c] == 498
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 233
+r == [157, 169, 132, 53]
+Here is the cur_column: [190, 80, 73, 118]
+r original: [190, 80, 73, 118]
+b[c] == 380
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 103
+b[c] == 160
+h * 0x1B + 0x100 == 0x100
+b[c] final == 160
+b[c] == 146
+h * 0x1B + 0x100 == 0x100
+b[c] final == 146
+b[c] == 236
+h * 0x1B + 0x100 == 0x100
+b[c] final == 236
+r == [168, 179, 230, 44]
+Here is the cur_column: [86, 237, 101, 76]
+r original: [86, 237, 101, 76]
+b[c] == 172
+h * 0x1B + 0x100 == 0x100
+b[c] final == 172
+b[c] == 474
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 193
+b[c] == 202
+h * 0x1B + 0x100 == 0x100
+b[c] final == 202
+b[c] == 152
+h * 0x1B + 0x100 == 0x100
+b[c] final == 152
+r == [169, 116, 165, 234]
+Outputting this from MixColumns: [[81, 116, 200, 102], [157, 169, 132, 53], [168, 179, 230, 44], [169, 116, 165, 234]]
+round[8].m_col == 5174c8669da98435a8b3e62ca974a5ea
+Cor key thing: [[11, 194, 173, 193], [220, 123, 82, 135], [144, 9, 69, 28], [95, 72, 164, 47]]
+round[8].k_sch == 5aa858395fd28d7d05e1a38868f3b9c5
+round[9].start == 5aa858395fd28d7d05e1a38868f3b9c5
+round[9].s_box == bec26a12cfb55dff6bf80ac4450d56a6
+input_mat[1] == [194, 181, 248, 13]
+after: [181, 248, 13, 194]
+round[9].s_row == beb50aa6cff856126b0d6aff45c25dc4
+Here is the cur_column: [190, 181, 10, 166]
+r original: [190, 181, 10, 166]
+b[c] == 380
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 103
+b[c] == 362
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 113
+b[c] == 20
+h * 0x1B + 0x100 == 0x100
+b[c] final == 20
+b[c] == 332
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 87
+r == [15, 119, 238, 49]
+Here is the cur_column: [207, 248, 86, 18]
+r original: [207, 248, 86, 18]
+b[c] == 414
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 133
+b[c] == 496
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 235
+b[c] == 172
+h * 0x1B + 0x100 == 0x100
+b[c] final == 172
+b[c] == 36
+h * 0x1B + 0x100 == 0x100
+b[c] final == 36
+r == [210, 204, 173, 192]
+Here is the cur_column: [107, 13, 106, 255]
+r original: [107, 13, 106, 255]
+b[c] == 214
+h * 0x1B + 0x100 == 0x100
+b[c] final == 214
+b[c] == 26
+h * 0x1B + 0x100 == 0x100
+b[c] final == 26
+b[c] == 212
+h * 0x1B + 0x100 == 0x100
+b[c] final == 212
+b[c] == 510
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 229
+r == [84, 48, 168, 63]
+Here is the cur_column: [69, 194, 93, 196]
+r original: [69, 194, 93, 196]
+b[c] == 138
+h * 0x1B + 0x100 == 0x100
+b[c] final == 138
+b[c] == 388
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 159
+b[c] == 186
+h * 0x1B + 0x100 == 0x100
+b[c] final == 186
+b[c] == 392
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 147
+r == [78, 249, 106, 195]
+Outputting this from MixColumns: [[15, 119, 238, 49], [210, 204, 173, 192], [84, 48, 168, 63], [78, 249, 106, 195]]
+round[9].m_col == 0f77ee31d2ccadc05430a83f4ef96ac3
+Cor key thing: [[69, 23, 48, 100], [245, 178, 13, 10], [166, 211, 77, 130], [96, 135, 51, 10]]
+round[9].k_sch == 4a824851c57e7e47643de50c2af3e8c9
+round[10].start == 4a824851c57e7e47643de50c2af3e8c9
+round[10].s_box == d61352d1a6f3f3a04327d9fee50d9bdd
+input_mat[1] == [19, 243, 39, 13]
+after: [243, 39, 13, 19]
+round[10].s_row == d6f3d9dda6279bd1430d52a0e513f3fe
+Here is the cur_column: [214, 243, 217, 221]
+r original: [214, 243, 217, 221]
+b[c] == 428
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 183
+b[c] == 486
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 253
+b[c] == 434
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 169
+b[c] == 442
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 161
+r == [189, 134, 240, 234]
+Here is the cur_column: [166, 39, 155, 209]
+r original: [166, 39, 155, 209]
+b[c] == 332
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 87
+b[c] == 78
+h * 0x1B + 0x100 == 0x100
+b[c] final == 78
+b[c] == 310
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 45
+b[c] == 418
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 185
+r == [116, 143, 196, 244]
+Here is the cur_column: [67, 13, 82, 160]
+r original: [67, 13, 82, 160]
+b[c] == 134
+h * 0x1B + 0x100 == 0x100
+b[c] final == 134
+b[c] == 26
+h * 0x1B + 0x100 == 0x100
+b[c] final == 26
+b[c] == 164
+h * 0x1B + 0x100 == 0x100
+b[c] final == 164
+b[c] == 320
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 91
+r == [99, 15, 17, 193]
+Here is the cur_column: [229, 19, 243, 254]
+r original: [229, 19, 243, 254]
+b[c] == 458
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 209
+b[c] == 38
+h * 0x1B + 0x100 == 0x100
+b[c] final == 38
+b[c] == 486
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 253
+b[c] == 508
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 231
+r == [233, 51, 18, 51]
+Outputting this from MixColumns: [[189, 134, 240, 234], [116, 143, 196, 244], [99, 15, 17, 193], [233, 51, 18, 51]]
+round[10].m_col == bd86f0ea748fc4f4630f11c1e9331233
+Cor key thing: [[124, 190, 19, 210], [207, 180, 230, 97], [247, 254, 187, 167], [28, 84, 240, 223]]
+round[10].k_sch == c14907f6ca3b3aa070e9aa313b52b5ec
+round[11].start == c14907f6ca3b3aa070e9aa313b52b5ec
+round[11].s_box == 783bc54274e280e0511eacc7e200d5ce
+input_mat[1] == [59, 226, 30, 0]
+after: [226, 30, 0, 59]
+round[11].s_row == 78e2acce741ed5425100c5e0e23b80c7
+Here is the cur_column: [120, 226, 172, 206]
+r original: [120, 226, 172, 206]
+b[c] == 240
+h * 0x1B + 0x100 == 0x100
+b[c] final == 240
+b[c] == 452
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 223
+b[c] == 344
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 67
+b[c] == 412
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 135
+r == [175, 134, 144, 65]
+Here is the cur_column: [116, 30, 213, 66]
+r original: [116, 30, 213, 66]
+b[c] == 232
+h * 0x1B + 0x100 == 0x100
+b[c] final == 232
+b[c] == 60
+h * 0x1B + 0x100 == 0x100
+b[c] final == 60
+b[c] == 426
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 177
+b[c] == 132
+h * 0x1B + 0x100 == 0x100
+b[c] final == 132
+r == [93, 110, 29, 211]
+Here is the cur_column: [81, 0, 197, 224]
+r original: [81, 0, 197, 224]
+b[c] == 162
+h * 0x1B + 0x100 == 0x100
+b[c] final == 162
+b[c] == 0
+h * 0x1B + 0x100 == 0x100
+b[c] final == 0
+b[c] == 394
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 145
+b[c] == 448
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 219
+r == [135, 229, 251, 237]
+Here is the cur_column: [226, 59, 128, 199]
+r original: [226, 59, 128, 199]
+b[c] == 452
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 223
+b[c] == 118
+h * 0x1B + 0x100 == 0x100
+b[c] final == 118
+b[c] == 256
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 27
+b[c] == 398
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 149
+r == [213, 200, 144, 19]
+Outputting this from MixColumns: [[175, 134, 144, 65], [93, 110, 29, 211], [135, 229, 251, 237], [213, 200, 144, 19]]
+round[11].m_col == af8690415d6e1dd387e5fbedd5c89013
+Cor key thing: [[240, 231, 215, 179], [26, 168, 165, 175], [250, 41, 100, 230], [254, 121, 74, 64]]
+round[11].k_sch == 5f9c6abfbac634aa50409fa766677653
+round[12].start == 5f9c6abfbac634aa50409fa766677653
+round[12].s_box == cfde0208f4b418ac5309db5c338538ed
+input_mat[1] == [222, 180, 9, 133]
+after: [180, 9, 133, 222]
+round[12].s_row == cfb4dbedf4093808538502ac33de185c
+Here is the cur_column: [207, 180, 219, 237]
+r original: [207, 180, 219, 237]
+b[c] == 414
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 133
+b[c] == 360
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 115
+b[c] == 438
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 173
+b[c] == 474
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 193
+r == [116, 39, 250, 228]
+Here is the cur_column: [244, 9, 56, 8]
+r original: [244, 9, 56, 8]
+b[c] == 488
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 243
+b[c] == 18
+h * 0x1B + 0x100 == 0x100
+b[c] final == 18
+b[c] == 112
+h * 0x1B + 0x100 == 0x100
+b[c] final == 112
+b[c] == 16
+h * 0x1B + 0x100 == 0x100
+b[c] final == 16
+r == [216, 166, 149, 38]
+Here is the cur_column: [83, 133, 2, 172]
+r original: [83, 133, 2, 172]
+b[c] == 166
+h * 0x1B + 0x100 == 0x100
+b[c] final == 166
+b[c] == 266
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 17
+b[c] == 4
+h * 0x1B + 0x100 == 0x100
+b[c] final == 4
+b[c] == 344
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 67
+r == [156, 232, 61, 49]
+Here is the cur_column: [51, 222, 24, 92]
+r original: [51, 222, 24, 92]
+b[c] == 102
+h * 0x1B + 0x100 == 0x100
+b[c] final == 102
+b[c] == 444
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 167
+b[c] == 48
+h * 0x1B + 0x100 == 0x100
+b[c] final == 48
+b[c] == 184
+h * 0x1B + 0x100 == 0x100
+b[c] final == 184
+r == [91, 224, 57, 43]
+Outputting this from MixColumns: [[116, 39, 250, 228], [216, 166, 149, 38], [156, 232, 61, 49], [91, 224, 57, 43]]
+round[12].m_col == 7427fae4d8a695269ce83d315be0392b
+Cor key thing: [[37, 155, 136, 90], [65, 245, 19, 114], [254, 0, 187, 28], [113, 37, 213, 10]]
+round[12].k_sch == 516604954353950314fb86e401922521
+round[13].start == 516604954353950314fb86e401922521
+round[13].s_box == d133f22a1aed2a7bfa0f44697c4f3ffd
+input_mat[1] == [51, 237, 15, 79]
+after: [237, 15, 79, 51]
+round[13].s_row == d1ed44fd1a0f3f2afa4ff27b7c332a69
+Here is the cur_column: [209, 237, 68, 253]
+r original: [209, 237, 68, 253]
+b[c] == 418
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 185
+b[c] == 474
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 193
+b[c] == 136
+h * 0x1B + 0x100 == 0x100
+b[c] final == 136
+b[c] == 506
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 225
+r == [44, 33, 168, 32]
+Here is the cur_column: [26, 15, 63, 42]
+r original: [26, 15, 63, 42]
+b[c] == 52
+h * 0x1B + 0x100 == 0x100
+b[c] final == 52
+b[c] == 30
+h * 0x1B + 0x100 == 0x100
+b[c] final == 30
+b[c] == 126
+h * 0x1B + 0x100 == 0x100
+b[c] final == 126
+b[c] == 84
+h * 0x1B + 0x100 == 0x100
+b[c] final == 84
+r == [48, 111, 21, 74]
+Here is the cur_column: [250, 79, 242, 123]
+r original: [250, 79, 242, 123]
+b[c] == 500
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 239
+b[c] == 158
+h * 0x1B + 0x100 == 0x100
+b[c] final == 158
+b[c] == 484
+h * 0x1B + 0x100 == 0x11b
+b[c] final == 255
+b[c] == 246
+h * 0x1B + 0x100 == 0x100
+b[c] final == 246
+r == [183, 18, 199, 94]
+Here is the cur_column: [124, 51, 42, 105]
+r original: [124, 51, 42, 105]
+b[c] == 248
+h * 0x1B + 0x100 == 0x100
+b[c] final == 248
+b[c] == 102
+h * 0x1B + 0x100 == 0x100
+b[c] final == 102
+b[c] == 84
+h * 0x1B + 0x100 == 0x100
+b[c] final == 84
+b[c] == 210
+h * 0x1B + 0x100 == 0x100
+b[c] final == 210
+r == [238, 13, 160, 79]
+Outputting this from MixColumns: [[44, 33, 168, 32], [48, 111, 21, 74], [183, 18, 199, 94], [238, 13, 160, 79]]
+round[13].m_col == 2c21a820306f154ab712c75eee0da04f
+Cor key thing: [[78, 169, 126, 205], [90, 242, 87, 248], [102, 79, 43, 205], [153, 224, 170, 234]]
+round[13].k_sch == 627bceb9999d5aaac945ecf423f56da5
+round[14].s_box == aa218b56ee5ebeacdd6ecebf26e63c06
+input_mat[1] == [33, 94, 110, 230]
+after: [94, 110, 230, 33]
+round[14].s_row == aa5ece06ee6e3c56dde68bac2621bebf
+Cor key thing: [[36, 191, 55, 109], [252, 9, 26, 104], [121, 121, 194, 222], [204, 233, 60, 54]]
+round[14].k_sch == 8ea2b7ca516745bfeafc49904b496089
+Final state after encryption: 8ea2b7ca516745bfeafc49904b496089
+Here is the encrypted data: 8ea2b7ca516745bfeafc49904b496089
+round[0].iinput: 8ea2b7ca516745bfeafc49904b496089
+num_rounds-1 == 14
+len(W_list) == 15
+Cor key thing: [[36, 191, 55, 109], [252, 9, 26, 104], [121, 121, 194, 222], [204, 233, 60, 54]]
+round[0].ik_sch == 24fc79ccbf0979e9371ac23c6d68de36
+round[1].istart: aa5ece06ee6e3c56dde68bac2621bebf
+round[1].is_row: aa218b56ee5ebeacdd6ecebf26e63c06
+Cor key thing: [[78, 169, 126, 205], [90, 242, 87, 248], [102, 79, 43, 205], [153, 224, 170, 234]]
+round[1].ik_sch == 4e5a6699a9f24fe07e572baacdf8cdea
+round[1].is_box: 2c21a820306f154ab712c75eee0da04f
+Here is the cur_column: [44, 33, 168, 32]
+cur_column: [44, 33, 168, 32]
+output from rev_mix_column: [209, 237, 68, 253]
+Here is the cur_column: [48, 111, 21, 74]
+cur_column: [48, 111, 21, 74]
+output from rev_mix_column: [26, 15, 63, 42]
+Here is the cur_column: [183, 18, 199, 94]
+cur_column: [183, 18, 199, 94]
+output from rev_mix_column: [250, 79, 242, 123]
+Here is the cur_column: [238, 13, 160, 79]
+cur_column: [238, 13, 160, 79]
+output from rev_mix_column: [124, 51, 42, 105]
+Outputting this from MixColumns: [[209, 237, 68, 253], [26, 15, 63, 42], [250, 79, 242, 123], [124, 51, 42, 105]]
+round[2].istart: d1ed44fd1a0f3f2afa4ff27b7c332a69
+round[2].is_row: d133f22a1aed2a7bfa0f44697c4f3ffd
+Cor key thing: [[37, 155, 136, 90], [65, 245, 19, 114], [254, 0, 187, 28], [113, 37, 213, 10]]
+round[2].ik_sch == 2541fe719bf500258813bbd55a721c0a
+round[2].is_box: 7427fae4d8a695269ce83d315be0392b
+Here is the cur_column: [116, 39, 250, 228]
+cur_column: [116, 39, 250, 228]
+output from rev_mix_column: [207, 180, 219, 237]
+Here is the cur_column: [216, 166, 149, 38]
+cur_column: [216, 166, 149, 38]
+output from rev_mix_column: [244, 9, 56, 8]
+Here is the cur_column: [156, 232, 61, 49]
+cur_column: [156, 232, 61, 49]
+output from rev_mix_column: [83, 133, 2, 172]
+Here is the cur_column: [91, 224, 57, 43]
+cur_column: [91, 224, 57, 43]
+output from rev_mix_column: [51, 222, 24, 92]
+Outputting this from MixColumns: [[207, 180, 219, 237], [244, 9, 56, 8], [83, 133, 2, 172], [51, 222, 24, 92]]
+round[3].istart: cfb4dbedf4093808538502ac33de185c
+round[3].is_row: cfde0208f4b418ac5309db5c338538ed
+Cor key thing: [[240, 231, 215, 179], [26, 168, 165, 175], [250, 41, 100, 230], [254, 121, 74, 64]]
+round[3].ik_sch == f01afafee7a82979d7a5644ab3afe640
+round[3].is_box: af8690415d6e1dd387e5fbedd5c89013
+Here is the cur_column: [175, 134, 144, 65]
+cur_column: [175, 134, 144, 65]
+output from rev_mix_column: [120, 226, 172, 206]
+Here is the cur_column: [93, 110, 29, 211]
+cur_column: [93, 110, 29, 211]
+output from rev_mix_column: [116, 30, 213, 66]
+Here is the cur_column: [135, 229, 251, 237]
+cur_column: [135, 229, 251, 237]
+output from rev_mix_column: [81, 0, 197, 224]
+Here is the cur_column: [213, 200, 144, 19]
+cur_column: [213, 200, 144, 19]
+output from rev_mix_column: [226, 59, 128, 199]
+Outputting this from MixColumns: [[120, 226, 172, 206], [116, 30, 213, 66], [81, 0, 197, 224], [226, 59, 128, 199]]
+round[4].istart: 78e2acce741ed5425100c5e0e23b80c7
+round[4].is_row: 783bc54274e280e0511eacc7e200d5ce
+Cor key thing: [[124, 190, 19, 210], [207, 180, 230, 97], [247, 254, 187, 167], [28, 84, 240, 223]]
+round[4].ik_sch == 7ccff71cbeb4fe5413e6bbf0d261a7df
+round[4].is_box: bd86f0ea748fc4f4630f11c1e9331233
+Here is the cur_column: [189, 134, 240, 234]
+cur_column: [189, 134, 240, 234]
+output from rev_mix_column: [214, 243, 217, 221]
+Here is the cur_column: [116, 143, 196, 244]
+cur_column: [116, 143, 196, 244]
+output from rev_mix_column: [166, 39, 155, 209]
+Here is the cur_column: [99, 15, 17, 193]
+cur_column: [99, 15, 17, 193]
+output from rev_mix_column: [67, 13, 82, 160]
+Here is the cur_column: [233, 51, 18, 51]
+cur_column: [233, 51, 18, 51]
+output from rev_mix_column: [229, 19, 243, 254]
+Outputting this from MixColumns: [[214, 243, 217, 221], [166, 39, 155, 209], [67, 13, 82, 160], [229, 19, 243, 254]]
+round[5].istart: d6f3d9dda6279bd1430d52a0e513f3fe
+round[5].is_row: d61352d1a6f3f3a04327d9fee50d9bdd
+Cor key thing: [[69, 23, 48, 100], [245, 178, 13, 10], [166, 211, 77, 130], [96, 135, 51, 10]]
+round[5].ik_sch == 45f5a66017b2d387300d4d33640a820a
+round[5].is_box: 0f77ee31d2ccadc05430a83f4ef96ac3
+Here is the cur_column: [15, 119, 238, 49]
+cur_column: [15, 119, 238, 49]
+output from rev_mix_column: [190, 181, 10, 166]
+Here is the cur_column: [210, 204, 173, 192]
+cur_column: [210, 204, 173, 192]
+output from rev_mix_column: [207, 248, 86, 18]
+Here is the cur_column: [84, 48, 168, 63]
+cur_column: [84, 48, 168, 63]
+output from rev_mix_column: [107, 13, 106, 255]
+Here is the cur_column: [78, 249, 106, 195]
+cur_column: [78, 249, 106, 195]
+output from rev_mix_column: [69, 194, 93, 196]
+Outputting this from MixColumns: [[190, 181, 10, 166], [207, 248, 86, 18], [107, 13, 106, 255], [69, 194, 93, 196]]
+round[6].istart: beb50aa6cff856126b0d6aff45c25dc4
+round[6].is_row: bec26a12cfb55dff6bf80ac4450d56a6
+Cor key thing: [[11, 194, 173, 193], [220, 123, 82, 135], [144, 9, 69, 28], [95, 72, 164, 47]]
+round[6].ik_sch == 0bdc905fc27b0948ad5245a4c1871c2f
+round[6].is_box: 5174c8669da98435a8b3e62ca974a5ea
+Here is the cur_column: [81, 116, 200, 102]
+cur_column: [81, 116, 200, 102]
+output from rev_mix_column: [246, 224, 98, 255]
+Here is the cur_column: [157, 169, 132, 53]
+cur_column: [157, 169, 132, 53]
+output from rev_mix_column: [80, 116, 88, 249]
+Here is the cur_column: [168, 179, 230, 44]
+cur_column: [168, 179, 230, 44]
+output from rev_mix_column: [190, 80, 73, 118]
+Here is the cur_column: [169, 116, 165, 234]
+cur_column: [169, 116, 165, 234]
+output from rev_mix_column: [86, 237, 101, 76]
+Outputting this from MixColumns: [[246, 224, 98, 255], [80, 116, 88, 249], [190, 80, 73, 118], [86, 237, 101, 76]]
+round[7].istart: f6e062ff507458f9be50497656ed654c
+round[7].is_row: f6ed49f950e06576be74624c565058ff
+Cor key thing: [[61, 82, 39, 84], [226, 71, 191, 7], [58, 117, 158, 207], [117, 231, 180, 57]]
+round[7].ik_sch == 3de23a75524775e727bf9eb45407cf39
+round[7].is_box: ebb19e1c3ee7c9e87d7535e9ed6b9144
+Here is the cur_column: [235, 177, 158, 28]
+cur_column: [235, 177, 158, 28]
+output from rev_mix_column: [210, 47, 12, 41]
+Here is the cur_column: [62, 231, 201, 232]
+cur_column: [62, 231, 201, 232]
+output from rev_mix_column: [31, 254, 3, 26]
+Here is the cur_column: [125, 117, 53, 233]
+cur_column: [125, 117, 53, 233]
+output from rev_mix_column: [120, 157, 131, 178]
+Here is the cur_column: [237, 107, 145, 68]
+cur_column: [237, 107, 145, 68]
+output from rev_mix_column: [236, 197, 54, 76]
+Outputting this from MixColumns: [[210, 47, 12, 41], [31, 254, 3, 26], [120, 157, 131, 178], [236, 197, 54, 76]]
+round[8].istart: d22f0c291ffe031a789d83b2ecc5364c
+round[8].is_row: d2c5831a1f2f36b278fe0c4cec9d0329
+Cor key thing: [[198, 201, 111, 108], [86, 167, 41, 213], [130, 153, 76, 89], [127, 23, 236, 139]]
+round[8].ik_sch == c656827fc9a799176f294cec6cd5598b
+round[8].is_box: b951c33c02e9bd29ae25cdb1efa08cc7
+Here is the cur_column: [185, 81, 195, 60]
+cur_column: [185, 81, 195, 60]
+output from rev_mix_column: [46, 110, 122, 45]
+Here is the cur_column: [2, 233, 189, 41]
+cur_column: [2, 233, 189, 41]
+output from rev_mix_column: [175, 198, 238, 248]
+Here is the cur_column: [174, 37, 205, 177]
+cur_column: [174, 37, 205, 177]
+output from rev_mix_column: [58, 134, 172, 231]
+Here is the cur_column: [239, 160, 140, 199]
+cur_column: [239, 160, 140, 199]
+output from rev_mix_column: [194, 91, 169, 52]
+Outputting this from MixColumns: [[46, 110, 122, 45], [175, 198, 238, 248], [58, 134, 172, 231], [194, 91, 169, 52]]
+round[9].istart: 2e6e7a2dafc6eef83a86ace7c25ba934
+round[9].is_row: 2e5bacf8af6ea9e73ac67a34c286ee2d
+Cor key thing: [[109, 111, 117, 115], [225, 165, 248, 184], [241, 79, 235, 81], [72, 146, 83, 141]]
+round[9].ik_sch == 6de1f1486fa54f9275f8eb5373b8518d
+round[9].is_box: aeb65ba974e0f822d73f567bdb64c877
+Here is the cur_column: [174, 182, 91, 169]
+cur_column: [174, 182, 91, 169]
+output from rev_mix_column: [156, 240, 166, 32]
+Here is the cur_column: [116, 224, 248, 34]
+cur_column: [116, 224, 248, 34]
+output from rev_mix_column: [73, 253, 89, 163]
+Here is the cur_column: [215, 63, 86, 123]
+cur_column: [215, 63, 86, 123]
+output from rev_mix_column: [153, 81, 137, 132]
+Here is the cur_column: [219, 100, 200, 119]
+cur_column: [219, 100, 200, 119]
+output from rev_mix_column: [242, 107, 225, 120]
+Outputting this from MixColumns: [[156, 240, 166, 32], [73, 253, 89, 163], [153, 81, 137, 132], [242, 107, 225, 120]]
+round[10].istart: 9cf0a62049fd59a399518984f26be178
+round[10].is_row: 9c6b89a349f0e18499fda678f2515920
+Cor key thing: [[174, 15, 166, 3], [135, 241, 142, 252], [223, 27, 213, 21], [240, 104, 251, 103]]
+round[10].ik_sch == ae87dff00ff11b68a68ed5fb03fc1567
+round[10].is_box: b2822d81abe6fb275faf103a078c0033
+Here is the cur_column: [178, 130, 45, 129]
+cur_column: [178, 130, 45, 129]
+output from rev_mix_column: [136, 219, 52, 251]
+Here is the cur_column: [171, 230, 251, 39]
+cur_column: [171, 230, 251, 39]
+output from rev_mix_column: [31, 128, 118, 120]
+Here is the cur_column: [95, 175, 16, 58]
+cur_column: [95, 175, 16, 58]
+output from rev_mix_column: [211, 248, 51, 194]
+Here is the cur_column: [7, 140, 0, 51]
+cur_column: [7, 140, 0, 51]
+output from rev_mix_column: [25, 74, 117, 158]
+Outputting this from MixColumns: [[136, 219, 52, 251], [31, 128, 118, 120], [211, 248, 51, 194], [25, 74, 117, 158]]
+round[11].istart: 88db34fb1f807678d3f833c2194a759e
+round[11].is_row: 884a33781fdb75c2d380349e19f876fb
+Cor key thing: [[22, 2, 26, 6], [81, 68, 93, 64], [168, 190, 164, 186], [205, 218, 193, 222]]
+round[11].ik_sch == 1651a8cd0244beda1a5da4c10640bade
+round[11].is_box: 810dce0cc9db8172b3678c1e88a1b5bd
+Here is the cur_column: [129, 13, 206, 12]
+cur_column: [129, 13, 206, 12]
+output from rev_mix_column: [173, 156, 126, 1]
+Here is the cur_column: [201, 219, 129, 114]
+cur_column: [201, 219, 129, 114]
+output from rev_mix_column: [126, 85, 239, 37]
+Here is the cur_column: [179, 103, 140, 30]
+cur_column: [179, 103, 140, 30]
+output from rev_mix_column: [188, 21, 15, 224]
+Here is the cur_column: [136, 161, 181, 189]
+cur_column: [136, 161, 181, 189]
+output from rev_mix_column: [28, 203, 99, 149]
+Outputting this from MixColumns: [[173, 156, 126, 1], [126, 85, 239, 37], [188, 21, 15, 224], [28, 203, 99, 149]]
+round[12].istart: ad9c7e017e55ef25bc150fe01ccb6395
+round[12].is_row: adcb0f257e9c63e0bc557e951c15ef01
+Cor key thing: [[165, 161, 169, 165], [115, 118, 127, 114], [194, 196, 206, 192], [159, 152, 147, 156]]
+round[12].ik_sch == a573c29fa176c498a97fce93a572c09c
+round[12].is_box: bd2a395d2b6ac438d192443e615da195
+Here is the cur_column: [189, 42, 57, 93]
+cur_column: [189, 42, 57, 93]
+output from rev_mix_column: [132, 225, 253, 107]
+Here is the cur_column: [43, 106, 196, 56]
+cur_column: [43, 106, 196, 56]
+output from rev_mix_column: [26, 92, 148, 111]
+Here is the cur_column: [209, 146, 68, 62]
+cur_column: [209, 146, 68, 62]
+output from rev_mix_column: [223, 73, 56, 151]
+Here is the cur_column: [97, 93, 161, 149]
+cur_column: [97, 93, 161, 149]
+output from rev_mix_column: [124, 251, 172, 35]
+Outputting this from MixColumns: [[132, 225, 253, 107], [26, 92, 148, 111], [223, 73, 56, 151], [124, 251, 172, 35]]
+round[13].istart: 84e1fd6b1a5c946fdf4938977cfbac23
+round[13].is_row: 84fb386f1ae1ac97df5cfd237c49946b
+Cor key thing: [[16, 20, 24, 28], [17, 21, 25, 29], [18, 22, 26, 30], [19, 23, 27, 31]]
+round[13].ik_sch == 101112131415161718191a1b1c1d1e1f
+round[13].is_box: 5f72641557f5bc92f7be3b291db9f91a
+Here is the cur_column: [95, 114, 100, 21]
+cur_column: [95, 114, 100, 21]
+output from rev_mix_column: [99, 83, 224, 140]
+Here is the cur_column: [87, 245, 188, 146]
+cur_column: [87, 245, 188, 146]
+output from rev_mix_column: [9, 96, 225, 4]
+Here is the cur_column: [247, 190, 59, 41]
+cur_column: [247, 190, 59, 41]
+output from rev_mix_column: [205, 112, 183, 81]
+Here is the cur_column: [29, 185, 249, 26]
+cur_column: [29, 185, 249, 26]
+output from rev_mix_column: [186, 202, 208, 231]
+Outputting this from MixColumns: [[99, 83, 224, 140], [9, 96, 225, 4], [205, 112, 183, 81], [186, 202, 208, 231]]
+End of the loop!!!!
+Cor key thing: [[0, 4, 8, 12], [1, 5, 9, 13], [2, 6, 10, 14], [3, 7, 11, 15]]
+Here is the final decrypted result: 00112233445566778899aabbccddeeff
+Done!
+test_enc_dec_256 passed!!!
+All tests passed!!!
+==============================
+==============================
+==============================
