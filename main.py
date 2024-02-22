@@ -648,7 +648,7 @@ def encrypt(data: bytes, key: bytes, mode="ECB", encryption=True) -> bytes: # Th
 	# Now run the key expansion.
 	num_rounds, expanded_key, reverse_keys = key_expansion(key, version) # Use the 192 bit version instead of the 128
 	print_keys(expanded_key)
-	if mode == "ECB": # Electronic code book mode.
+	if mode == "ECB" or mode == "CBC": # Electronic code book mode.
 		# Now go over the data blocks.
 		data_blocks = split_data_blocks(data)
 		# encrypt each data block separately.
@@ -656,11 +656,29 @@ def encrypt(data: bytes, key: bytes, mode="ECB", encryption=True) -> bytes: # Th
 		# encrypt_state(expanded_key, example_plaintext, num_rounds, expanded_key)
 		orig_expanded_key = copy.deepcopy(expanded_key)
 		if encryption:
-
-			encrypted_data_blocks = [encrypt_state(expanded_key, block, num_rounds, expanded_key) for block in data_blocks] # Encrypt each block.
+			if mode == "CBC":
+				# CBC mode
+				# Encrypt the first block normally, then xor the input with the last encrypted output before putting it through the encryption process in subsequent blocks.
+				encrypted_data_blocks = [encrypt_state(expanded_key, data_blocks[0], num_rounds, expanded_key)] # Encrypt the first block normally.
+				for block in data_blocks[1:]:
+					# First xor the input. with the previous encrypted block.
+					input_block = xor_bytes(block, encrypted_data_blocks[-1])
+					encrypted_block = encrypt_state(expanded_key, input_block, num_rounds, expanded_key)
+					# Now append the encrypted block to the output.
+					encrypted_data_blocks.append(encrypted_block)
+			else:
+				# ECB mode
+				encrypted_data_blocks = [encrypt_state(expanded_key, block, num_rounds, expanded_key) for block in data_blocks] # Encrypt each block.
 		else:
-			# Decryption
-			encrypted_data_blocks = [decrypt_state(expanded_key, block, num_rounds, expanded_key) for block in data_blocks] # Encrypt each block.
+			if mode == "CBC":
+				# CBC mode.
+				assert False # Decryption for CBC mode is not implemented!!!
+				return # This is a stub for now.
+			else:
+				# ECB mode
+				# Decryption
+				encrypted_data_blocks = [decrypt_state(expanded_key, block, num_rounds, expanded_key) for block in data_blocks] # Encrypt each block.
+
 		assert orig_expanded_key == expanded_key # Check for in-place modification. This should not change.
 		# Join data blocks.
 		encrypted = b''.join(encrypted_data_blocks) # Join as bytes string.

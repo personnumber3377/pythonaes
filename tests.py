@@ -29,6 +29,7 @@ def run_tests() -> None:
 	test_dec()
 	test_list_to_bytes()
 	test_not_test_vec()
+	test_encrypt_cbc()
 	print("All tests passed!!!")
 	print("="*30)
 	print("="*30)
@@ -274,16 +275,21 @@ def test_enc_dec() -> None:
 	print("test_enc_dec passed!!!")
 	return
 
-def encrypt_helper(data: str, key: str, expected_result: str) -> bool: # Returns true if passed.
+def test_encrypt_cbc() -> None: # Cipher Block Chaining mode.
+	# See https://github.com/ircmaxell/quality-checker/blob/master/tmp/gh_18/PHP-PasswordLib-master/test/Data/Vectors/aes-cbc.test-vectors for the CBC test vectors.
+	assert encrypt_helper("6bc1bee22e409f96e93d7e117393172a", "2b7e151628aed2a6abf7158809cf4f3c", "7649abac8119b246cee98e9b12e9197d", mode="CBC", iv="") # 128 bit keysize.
+
+def encrypt_helper(data: str, key: str, expected_result: str, mode="ECB") -> bool: # Returns true if passed.
 	example_plaintext = bytes.fromhex(data)
 	key_bytes = bytes.fromhex(key)
-	encrypted = encrypt(example_plaintext, key_bytes, mode="ECB") # Just Electronic Code Book, for now.
+	encrypted = encrypt(example_plaintext, key_bytes, mode=mode) # Just Electronic Code Book, for now.
+	print("encrypted == "+str(print_hex(encrypted)))
 	return encrypted == bytes.fromhex(expected_result) # Check.
 
-def decrypt_helper(data: str, key: str, expected_result: str) -> bool:# Returns true if passed.
+def decrypt_helper(data: str, key: str, expected_result: str, mode="ECB") -> bool:# Returns true if passed.
 	example_plaintext = bytes.fromhex(data)
 	key_bytes = bytes.fromhex(key)
-	decrypted = decrypt(example_plaintext, key_bytes, mode="ECB") # Just Electronic Code Book, for now.
+	decrypted = decrypt(example_plaintext, key_bytes, mode=mode) # Just Electronic Code Book, for now.
 	return decrypted == bytes.fromhex(expected_result) # Check.
 
 def test_enc() -> None:
@@ -313,6 +319,7 @@ def test_not_test_vec() -> None: # This is actually a test on actual data which 
 	assert decrypted == copy_example_data # Now check.
 	print("test_not_test_vec passed!!!")
 	return
+
 def test_key_padding() -> None:
 	num_bits = 128
 	N = (num_bits)//32 # Length of key in bits divided by 32
