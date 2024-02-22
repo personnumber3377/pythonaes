@@ -277,12 +277,12 @@ def test_enc_dec() -> None:
 
 def test_encrypt_cbc() -> None: # Cipher Block Chaining mode.
 	# See https://github.com/ircmaxell/quality-checker/blob/master/tmp/gh_18/PHP-PasswordLib-master/test/Data/Vectors/aes-cbc.test-vectors for the CBC test vectors.
-	assert encrypt_helper("6bc1bee22e409f96e93d7e117393172a", "2b7e151628aed2a6abf7158809cf4f3c", "7649abac8119b246cee98e9b12e9197d", mode="CBC", iv="") # 128 bit keysize.
+	assert encrypt_helper("6bc1bee22e409f96e93d7e117393172a", "2b7e151628aed2a6abf7158809cf4f3c", "7649abac8119b246cee98e9b12e9197d", mode="CBC", iv="000102030405060708090A0B0C0D0E0F") # 128 bit keysize.
 
-def encrypt_helper(data: str, key: str, expected_result: str, mode="ECB") -> bool: # Returns true if passed.
+def encrypt_helper(data: str, key: str, expected_result: str, mode="ECB", iv=None) -> bool: # Returns true if passed.
 	example_plaintext = bytes.fromhex(data)
 	key_bytes = bytes.fromhex(key)
-	encrypted = encrypt(example_plaintext, key_bytes, mode=mode) # Just Electronic Code Book, for now.
+	encrypted = encrypt(example_plaintext, key_bytes, mode=mode, iv=iv) # Just Electronic Code Book, for now.
 	print("encrypted == "+str(print_hex(encrypted)))
 	return encrypted == bytes.fromhex(expected_result) # Check.
 

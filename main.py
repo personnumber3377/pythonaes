@@ -18,12 +18,6 @@ def fail(msg: str):
 	exit(1)
 
 
-def encrypt(state, expanded_key, num_rounds):
-	# State is a 4x4 matrix which each element is one byte
-	# expanded key is the expanded key
-	# num rounds is the number of rounds.
-	cur_key = 0
-
 '''
 i	1	2	3	4	5	6	7	8	9	10
 rci	01	02	04	08	10	20	40	80	1B	36
@@ -642,7 +636,7 @@ def split_data_blocks(data: bytes) -> list: # This creates a list of data blocks
 		assert len(blocks[-1]) == 16 # Sanity checking.
 	return blocks
 
-def encrypt(data: bytes, key: bytes, mode="ECB", encryption=True) -> bytes: # This is the main encryption function. Default to the electronic code book encryption mode. (ECB is the WEAKEST!!!) encryption=True means that we are encrypting and encryption=False means that we are decrypting.
+def encrypt(data: bytes, key: bytes, mode="ECB", encryption=True, iv=None) -> bytes: # This is the main encryption function. Default to the electronic code book encryption mode. (ECB is the WEAKEST!!!) encryption=True means that we are encrypting and encryption=False means that we are decrypting.
 	# Now get the appropriate AES version.
 	version = get_aes_ver_from_key(key)
 	# Now run the key expansion.
@@ -659,25 +653,50 @@ def encrypt(data: bytes, key: bytes, mode="ECB", encryption=True) -> bytes: # Th
 			if mode == "CBC":
 				# CBC mode
 				# Encrypt the first block normally, then xor the input with the last encrypted output before putting it through the encryption process in subsequent blocks.
-				encrypted_data_blocks = [encrypt_state(expanded_key, data_blocks[0], num_rounds, expanded_key)] # Encrypt the first block normally.
-				for block in data_blocks[1:]:
-					# First xor the input. with the previous encrypted block.
-					input_block = xor_bytes(block, encrypted_data_blocks[-1])
-					encrypted_block = encrypt_state(expanded_key, input_block, num_rounds, expanded_key)
-					# Now append the encrypted block to the output.
-					encrypted_data_blocks.append(encrypted_block)
+				# Here is the debug shit. If the iv variable is defined, then just do the xor straight away with the iv vector.
+				if iv == None:
+
+					encrypted_data_blocks = [encrypt_state(expanded_key, data_blocks[0], num_rounds, expanded_key)] # Encrypt the first block normally.
+					for block in data_blocks[1:]:
+						# First xor the input. with the previous encrypted block.
+						input_block = xor_bytes(block, encrypted_data_blocks[-1])
+						encrypted_block = encrypt_state(expanded_key, input_block, num_rounds, expanded_key)
+						# Now append the encrypted block to the output.
+						encrypted_data_blocks.append(encrypted_block)
+				else:
+					# This is the debug shit.
+					encrypted_data_blocks = []
+					#encrypted_data_blocks = [encrypt_state(expanded_key, data_blocks[0], num_rounds, expanded_key)] # Encrypt the first block normally.
+					first_block = True
+					for block in data_blocks:
+						if first_block:
+							input_block = xor_bytes(block, bytes.fromhex(iv)) # This is used to simulate the earlier blocks...
+						else:
+							# First xor the input. with the previous encrypted block.
+							input_block = xor_bytes(block, encrypted_data_blocks[-1])
+						encrypted_block = encrypt_state(expanded_key, input_block, num_rounds, expanded_key)
+						# Now append the encrypted block to the output.
+						encrypted_data_blocks.append(encrypted_block)
+
 			else:
 				# ECB mode
 				encrypted_data_blocks = [encrypt_state(expanded_key, block, num_rounds, expanded_key) for block in data_blocks] # Encrypt each block.
 		else:
 			if mode == "CBC":
 				# CBC mode.
-				assert False # Decryption for CBC mode is not implemented!!!
+				#assert False # Decryption for CBC mode is not implemented!!!
+				assert iv != None # We should have the initialization vector.
+				# First create a copy of the input data blocks.
+				copy_input = copy.deepcopy(data_blocks)
+				# First just decrypt each block.
+
+				encrypted_data_blocks = [decrypt_state(expanded_key, block, num_rounds, expanded_key) for block in data_blocks] # Decrypt each block.
+				# Now xor with the 
 				return # This is a stub for now.
 			else:
 				# ECB mode
 				# Decryption
-				encrypted_data_blocks = [decrypt_state(expanded_key, block, num_rounds, expanded_key) for block in data_blocks] # Encrypt each block.
+				encrypted_data_blocks = [decrypt_state(expanded_key, block, num_rounds, expanded_key) for block in data_blocks] # Decrypt each block.
 
 		assert orig_expanded_key == expanded_key # Check for in-place modification. This should not change.
 		# Join data blocks.
