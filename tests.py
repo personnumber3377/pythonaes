@@ -27,7 +27,8 @@ def run_tests() -> None:
 	test_enc()
 	test_key_padding()
 	test_dec()
-	#test_not_test_vec()
+	test_list_to_bytes()
+	test_not_test_vec()
 	print("All tests passed!!!")
 	print("="*30)
 	print("="*30)
@@ -173,14 +174,13 @@ def test_enc_dec_192() -> None:
 	print("Here is the encrypted data: "+str(encrypted))
 	# Sanity check. It should be this.
 	#assert encrypted == "69c4e0d86a7b0430d8cdb78070b4c55a" # This is the example vector from the pdf file. (192 bit version.)
-	assert encrypted == "dda97ca4864cdfe06eaf70a0ec0d7191"
+	assert encrypted == bytes.fromhex("dda97ca4864cdfe06eaf70a0ec0d7191")
 	# Now the encrypted data is in "encrypted". Now decrypting it, should return in the original plaintext.
 	# First convert the encrypted stuff to bytes before decrypt_state.
-	encrypted = bytes.fromhex(encrypted)
+	#encrypted = bytes.fromhex(encrypted)
 	decrypted = decrypt_state(expanded_key, encrypted, num_rounds, expanded_key)
-	res = print_hex(decrypted)
-	print("Here is the final decrypted result: "+str(res))
-	assert res == "00112233445566778899aabbccddeeff"
+	print("Here is the final decrypted result: "+str(decrypted))
+	assert decrypted == bytes.fromhex("00112233445566778899aabbccddeeff")
 	print("Done!")
 	print("test_enc_dec passed!!!")
 	return
@@ -198,18 +198,29 @@ def test_enc_dec_256() -> None:
 	print("Here is the encrypted data: "+str(encrypted))
 	# Sanity check. It should be this.
 	#assert encrypted == "69c4e0d86a7b0430d8cdb78070b4c55a" # This is the example vector from the pdf file. (192 bit version.)
-	assert encrypted == "8ea2b7ca516745bfeafc49904b496089"
+	assert encrypted == bytes.fromhex("8ea2b7ca516745bfeafc49904b496089")
 	# Now the encrypted data is in "encrypted". Now decrypting it, should return in the original plaintext.
 	# First convert the encrypted stuff to bytes before decrypt_state.
-	encrypted = bytes.fromhex(encrypted)
+	#encrypted = bytes.fromhex(encrypted)
 	decrypted = decrypt_state(expanded_key, encrypted, num_rounds, expanded_key)
-	res = print_hex(decrypted)
-	print("Here is the final decrypted result: "+str(res))
-	assert res == "00112233445566778899aabbccddeeff"
+	print("Here is the final decrypted result: "+str(decrypted))
+	assert decrypted == bytes.fromhex("00112233445566778899aabbccddeeff")
 	print("Done!")
 	print("test_enc_dec_256 passed!!!")
 	return
 
+def test_list_to_bytes() -> None:
+	# This tests the 4x4 matrix to bytes conversion.
+	test_mat = [[0,4,8,12],
+				[1,5,9,13],
+				[2,6,10,14],
+				[3,7,11,15]]
+	# Now just create the bytes string.
+	bytes_string = list_to_bytes(test_mat)
+	# Check the result.
+	assert bytes_string == bytes.fromhex("000102030405060708090a0b0c0d0e0f")
+	print("test_list_to_bytes passed!!!")
+	return
 
 def test_split_data_blocks() -> None: # This tests the splitting of the data to 16 byte blocks. If the length of the data is not a multiple of 16 bytes, then pad the very last block with zeroes.
 	example_data = (b"\x41")*16+(b"\x42\x43\x44\x45") # There are 16 "A" characters followed by "BCDE" in ascii.
@@ -242,21 +253,23 @@ def test_enc_dec() -> None:
 	encrypted = encrypt_state(expanded_key, example_plaintext, num_rounds, expanded_key)
 	print("Here is the encrypted data: "+str(encrypted))
 	# Sanity check. It should be this.
-	assert encrypted == "69c4e0d86a7b0430d8cdb78070b4c55a" # This is the example vector from the pdf file.
+	print("Here is the encrypted state: "+str(print_hex(encrypted)))
+
+	assert encrypted == bytes.fromhex("69c4e0d86a7b0430d8cdb78070b4c55a") # This is the example vector from the pdf file.
 
 	#encrypted = "69c4e0d86a7b0430d8cdb78070b4c55a"
 	# Now the encrypted data is in "encrypted". Now decrypting it, should return in the original plaintext.
 	# First convert the encrypted stuff to bytes before decrypt_state.
-	encrypted = bytes.fromhex(encrypted)
+	#encrypted = bytes.fromhex(encrypted)
 
 	# decrypted = decrypt_state(expanded_key, encrypted, num_rounds, expanded_key) # This was the old thing.
 	#decrypted = decrypt_state(reverse_keys, encrypted, num_rounds, reverse_keys)
 	# expanded_key
 
 	decrypted = decrypt_state(expanded_key, encrypted, num_rounds, expanded_key)
-	res = print_hex(decrypted)
-	print("Here is the final decrypted result: "+str(res))
-	assert res == "00112233445566778899aabbccddeeff"
+	print("Fuck!!!")
+	print("Here is the final decrypted result: "+str(decrypted))
+	assert decrypted == bytes.fromhex("00112233445566778899aabbccddeeff")
 	print("Done!")
 	print("test_enc_dec passed!!!")
 	return

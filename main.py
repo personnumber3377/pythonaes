@@ -167,7 +167,24 @@ def flatten(items):
 		else:
 			yield x
 
-def print_hex(byte_list: bytes) -> None:
+def list_to_bytes(byte_list: bytes) -> bytes: # This function returns the 4x4 matrix or whatever as a bytes string.
+	if len(byte_list) == 4 and len(byte_list[0]) == 4 and isinstance(byte_list[0][0], int):
+		# Now transpose, because the state is a 4x4 matrix.
+		'''
+		[[b0,b4,b8,b12],
+		[b1,b5,b9,b13],
+		[b2,b6,b10,b14],
+		[b3,b7,b11,b15]]
+		'''
+
+		byte_list = transpose_mat(byte_list)
+	flattened_list = list(flatten(byte_list))
+	out = b""
+	for x in flattened_list:
+		out += bytes([x])
+	return out
+
+def print_hex(byte_list: bytes) -> str:
 	# print("byte_list == "+str(byte_list))
 	# Check if the matrix is a 4x4 state.
 	if len(byte_list) == 4 and len(byte_list[0]) == 4 and isinstance(byte_list[0][0], int):
@@ -519,7 +536,7 @@ def encrypt_state(expanded_key: list, plaintext: bytes, num_rounds: int, W_list:
 	print("round["+str(num_rounds-1)+"].k_sch == "+str(print_hex(state)))
 	state = BoundsCheck(state)
 	print("Final state after encryption: "+str(print_hex(state)))
-	return print_hex(state)
+	return list_to_bytes(state) # Return as a bytes string.
 
 def hex_list_to_str(int_list: list) -> None:
 	oof = ''.join([hex(x)+" " for x in int_list])
@@ -592,7 +609,7 @@ def decrypt_state(expanded_key: list, encrypted_data: list, num_rounds: int, W_l
 	state = InvSubBytes(state)
 	state = AddRoundKey(state, 0, W_list)
 	print("Here is the state in decrypt_state before returning: "+str(state))
-	return print_hex(state)
+	return list_to_bytes(state)
 
 def get_aes_ver_from_key(key: bytes) -> str:
 	if len(key) > (256//8):
@@ -646,9 +663,9 @@ def encrypt(data: bytes, key: bytes, mode="ECB", encryption=True) -> bytes: # Th
 			encrypted_data_blocks = [decrypt_state(expanded_key, block, num_rounds, expanded_key) for block in data_blocks] # Encrypt each block.
 		assert orig_expanded_key == expanded_key # Check for in-place modification. This should not change.
 		# Join data blocks.
-		encrypted_as_hex = ''.join(encrypted_data_blocks)
+		encrypted = b''.join(encrypted_data_blocks) # Join as bytes string.
 		# Convert to bytes.
-		encrypted = bytes.fromhex(encrypted_as_hex)
+		#encrypted = bytes.fromhex(encrypted_as_hex) # This is no longer needed.
 		# Sanity check.
 		#assert len(encrypted) == 16 # Should be the size of the "state" matrix.
 		return encrypted
