@@ -591,12 +591,71 @@ def decrypt_state(expanded_key: list, encrypted_data: list, num_rounds: int, W_l
 	state = InvShiftRows(state)
 	state = InvSubBytes(state)
 	state = AddRoundKey(state, 0, W_list)
+	print("Here is the state in decrypt_state before returning: "+str(state))
+	return print_hex(state)
 
-	return state
+def get_aes_ver_from_key(key: bytes) -> str:
+	if len(key) > (256//8):
+		# Invalid key size.
+		print("Invalid key size!!!")
+		print("length of key must be less than or equal to 256!!!")
+		print("length of key: "+str(len(key)))
+		assert False # Invalid key size.
+	version = None
+	if len(key) > (192//8):
+		# key must be 256 bit
+		version = "256"
+	elif len(key) > (128//8):
+		# key must be 192 bit
+		version = "192"
+	else:
+		version = "128" # default to 128 bit key.
+	assert version != None # We should have assigned version as of now.
+	return version
 
+def split_data_blocks(data: bytes) -> list: # This creates a list of data blocks.
+	print("math.ceil(len(data)/16) == "+str(math.ceil(len(data)/16)))
+	blocks = [data[i:i+16] for i in range(0,math.ceil(len(data)/16)*16,16)] # Split into blocks.
+	print("blocks == "+str(blocks))
+	# Then we should pad the very last block.
+	assert all([len(x)<=16 for x in blocks]) # Sanity checking
+	if len(blocks[-1]) < 16:
+		# pad the last block, because data length is not a multiple of 16 (in bytes).
+		blocks[-1] = pad_plain_text(blocks[-1], 16)
+		assert len(blocks[-1]) == 16 # Sanity checking.
+	return blocks
 
+def encrypt(data: bytes, key: bytes, mode="ECB", encryption=True) -> bytes: # This is the main encryption function. Default to the electronic code book encryption mode. (ECB is the WEAKEST!!!) encryption=True means that we are encrypting and encryption=False means that we are decrypting.
+	# Now get the appropriate AES version.
+	version = get_aes_ver_from_key(key)
+	# Now run the key expansion.
+	num_rounds, expanded_key, reverse_keys = key_expansion(key, version) # Use the 192 bit version instead of the 128
+	print_keys(expanded_key)
+	if mode == "ECB": # Electronic code book mode.
+		# Now go over the data blocks.
+		data_blocks = split_data_blocks(data)
+		# encrypt each data block separately.
+		# def encrypt_state(expanded_key: list, plaintext: bytes, num_rounds: int, W_list: list) -> bytes:
+		# encrypt_state(expanded_key, example_plaintext, num_rounds, expanded_key)
+		orig_expanded_key = copy.deepcopy(expanded_key)
+		if encryption:
 
+			encrypted_data_blocks = [encrypt_state(expanded_key, block, num_rounds, expanded_key) for block in data_blocks] # Encrypt each block.
+		else:
+			# Decryption
+			encrypted_data_blocks = [decrypt_state(expanded_key, block, num_rounds, expanded_key) for block in data_blocks] # Encrypt each block.
+		assert orig_expanded_key == expanded_key # Check for in-place modification. This should not change.
+		# Join data blocks.
+		encrypted_as_hex = ''.join(encrypted_data_blocks)
+		# Convert to bytes.
+		encrypted = bytes.fromhex(encrypted_as_hex)
+		# Sanity check.
+		#assert len(encrypted) == 16 # Should be the size of the "state" matrix.
+		return encrypted
+	return # Stub for now
 
+def decrypt(encrypted: bytes, key: bytes, mode="ECB") -> bytes:
+	return encrypt(encrypted, key, mode=mode, encryption=False)
 
 def print_keys(keys: list) -> list:
 	print("="*30)

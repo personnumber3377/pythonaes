@@ -23,6 +23,11 @@ def run_tests() -> None:
 	test_enc_dec()
 	test_enc_dec_192()
 	test_enc_dec_256()
+	test_split_data_blocks()
+	test_enc()
+	test_key_padding()
+	test_dec()
+	#test_not_test_vec()
 	print("All tests passed!!!")
 	print("="*30)
 	print("="*30)
@@ -206,6 +211,22 @@ def test_enc_dec_256() -> None:
 	return
 
 
+def test_split_data_blocks() -> None: # This tests the splitting of the data to 16 byte blocks. If the length of the data is not a multiple of 16 bytes, then pad the very last block with zeroes.
+	example_data = (b"\x41")*16+(b"\x42\x43\x44\x45") # There are 16 "A" characters followed by "BCDE" in ascii.
+	# Now try splitting.
+	blocks = split_data_blocks(example_data)
+	print("Here is the blocks: "+str(blocks))
+	assert len(blocks) == 2 # There should only be 2 blocks.
+	assert blocks[0] == (b"\x41")*16# The first block should be just 16 "A" characters.
+	assert blocks[1] == b"\x42\x43\x44\x45"+(16-len("\x42\x43\x44\x45"))*(b"\x00") # In the second block, there should be "\x42\x43\x44\x45" followed by 16-4=12 null bytes.
+	print("test_split_data_blocks passed!!!")
+	example_data = (b"\x41")*16 # There are 16 "A" characters 
+	# Now try splitting.
+	blocks = split_data_blocks(example_data)
+	assert len(blocks) == 1
+	assert blocks[0] == (b"\x41")*16
+	return
+
 def test_enc_dec() -> None:
 	encryption_key = "oofoof"
 	num_rounds, expanded_key, reverse_keys = key_expansion(bytes(encryption_key, encoding="ascii"), "128")
@@ -239,3 +260,56 @@ def test_enc_dec() -> None:
 	print("Done!")
 	print("test_enc_dec passed!!!")
 	return
+
+def encrypt_helper(data: str, key: str, expected_result: str) -> bool: # Returns true if passed.
+	example_plaintext = bytes.fromhex(data)
+	key_bytes = bytes.fromhex(key)
+	encrypted = encrypt(example_plaintext, key_bytes, mode="ECB") # Just Electronic Code Book, for now.
+	return encrypted == bytes.fromhex(expected_result) # Check.
+
+def decrypt_helper(data: str, key: str, expected_result: str) -> bool:# Returns true if passed.
+	example_plaintext = bytes.fromhex(data)
+	key_bytes = bytes.fromhex(key)
+	decrypted = decrypt(example_plaintext, key_bytes, mode="ECB") # Just Electronic Code Book, for now.
+	return decrypted == bytes.fromhex(expected_result) # Check.
+
+def test_enc() -> None:
+	assert encrypt_helper("00112233445566778899aabbccddeeff", "000102030405060708090a0b0c0d0e0f", "69c4e0d86a7b0430d8cdb78070b4c55a") # 128 bit keysize.
+	assert encrypt_helper("00112233445566778899aabbccddeeff", "000102030405060708090a0b0c0d0e0f1011121314151617", "dda97ca4864cdfe06eaf70a0ec0d7191") # 192 bit keysize.
+	assert encrypt_helper("00112233445566778899aabbccddeeff", "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f", "8ea2b7ca516745bfeafc49904b496089") # 256 bit keysize.
+	print("test_enc passed!!!")
+	return
+
+def test_dec() -> None:
+	assert decrypt_helper("69c4e0d86a7b0430d8cdb78070b4c55a", "000102030405060708090a0b0c0d0e0f", "00112233445566778899aabbccddeeff") # 128 bit keysize.
+	assert decrypt_helper("dda97ca4864cdfe06eaf70a0ec0d7191", "000102030405060708090a0b0c0d0e0f1011121314151617", "00112233445566778899aabbccddeeff") # 192 bit keysize.
+	assert decrypt_helper("8ea2b7ca516745bfeafc49904b496089", "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f", "00112233445566778899aabbccddeeff") # 256 bit keysize.
+	print("test_dec passed!!!")
+	return
+
+def test_not_test_vec() -> None: # This is actually a test on actual data which is not a test vector.
+	example_data = b"SAMPLETEXT"
+	copy_example_data = copy.deepcopy(example_data)
+	key = b"SAMPLEKEY"
+	# Now encrypt
+	encrypted = encrypt(example_data, key, mode="ECB")
+	print("Here is the text \"SAMPLETEXT\" encrypted with the key \"SAMPLEKEY\" : "+str(print_hex(encrypted)))
+	# Now decrypt.
+	decrypted = decrypt(encrypted, key)
+	decrypted = decrypted[:decrypted.index(0x00)] # Remove null byte padding.
+	assert decrypted == copy_example_data # Now check.
+	print("test_not_test_vec passed!!!")
+	return
+def test_key_padding() -> None:
+	num_bits = 128
+	N = (num_bits)//32 # Length of key in bits divided by 32
+	R = 10+((0*2)+1)
+	# encryption_key = bytes.fromhex("000102030405060708090a0b0c0d0e0f")
+	encryption_key = bytes.fromhex("000102030405060708090a0b0c0d") # Just removed two bytes from the end.
+	encryption_key = pad_key(encryption_key, N)
+	assert len(encryption_key) == N*4
+	assert encryption_key == bytes.fromhex("000102030405060708090a0b0c0d0000") # Check for the padded zeroes.
+	print("test_key_padding passed!!!")
+	return
+
+
