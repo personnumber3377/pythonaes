@@ -638,6 +638,14 @@ def split_data_blocks(data: bytes) -> list: # This creates a list of data blocks
 
 def encrypt(data: bytes, key: bytes, mode="ECB", encryption=True, iv=None) -> bytes: # This is the main encryption function. Default to the electronic code book encryption mode. (ECB is the WEAKEST!!!) encryption=True means that we are encrypting and encryption=False means that we are decrypting.
 	# Now get the appropriate AES version.
+	#if iv == None: # Just use the default value of zero.
+	#	iv = bytes([0])
+	# Pad the initialization vector.
+	if iv != None:
+
+		iv = pad_key(iv, 4) # Pad the initialization vector.
+	#assert isinstance(iv, bytes)
+	
 	version = get_aes_ver_from_key(key)
 	# Now run the key expansion.
 	num_rounds, expanded_key, reverse_keys = key_expansion(key, version) # Use the 192 bit version instead of the 128
@@ -670,7 +678,7 @@ def encrypt(data: bytes, key: bytes, mode="ECB", encryption=True, iv=None) -> by
 					first_block = True
 					for block in data_blocks:
 						if first_block:
-							input_block = xor_bytes(block, bytes.fromhex(iv)) # This is used to simulate the earlier blocks...
+							input_block = xor_bytes(block, iv) # This is used to simulate the earlier blocks...
 						else:
 							# First xor the input. with the previous encrypted block.
 							input_block = xor_bytes(block, encrypted_data_blocks[-1])
@@ -684,15 +692,28 @@ def encrypt(data: bytes, key: bytes, mode="ECB", encryption=True, iv=None) -> by
 		else:
 			if mode == "CBC":
 				# CBC mode.
+				# https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation#Cipher_block_chaining_(CBC)
 				#assert False # Decryption for CBC mode is not implemented!!!
 				assert iv != None # We should have the initialization vector.
 				# First create a copy of the input data blocks.
 				copy_input = copy.deepcopy(data_blocks)
 				# First just decrypt each block.
+				encrypted_data_blocks = [] # This is the original stuff.
+				decrypted_data_blocks = [decrypt_state(expanded_key, block, num_rounds, expanded_key) for block in data_blocks] # Decrypt each block.
+				# Now xor with the original input blocks. (If we are decrypting the very first block, then use the initialization vector to XOR with)
+				for i, block in enumerate(decrypted_data_blocks):
+					if i == 0: # Very first block.
+						# Use the initialization vector
+						xor_value = iv
+					else:
+						xor_value = decrypted_data_blocks[i-1] # Use the previous encrypted ciphertext to xor.
+					# Sanity checking...
+					assert isinstance(block, bytes)
+					assert isinstance(xor_value, bytes)
+					# Do the xor.
+					encrypted_data_blocks.append(xor_bytes(block, xor_value))
 
-				encrypted_data_blocks = [decrypt_state(expanded_key, block, num_rounds, expanded_key) for block in data_blocks] # Decrypt each block.
-				# Now xor with the 
-				return # This is a stub for now.
+				#return # This is a stub for now.
 			else:
 				# ECB mode
 				# Decryption
@@ -708,8 +729,8 @@ def encrypt(data: bytes, key: bytes, mode="ECB", encryption=True, iv=None) -> by
 		return encrypted
 	return # Stub for now
 
-def decrypt(encrypted: bytes, key: bytes, mode="ECB") -> bytes:
-	return encrypt(encrypted, key, mode=mode, encryption=False)
+def decrypt(encrypted: bytes, key: bytes, mode="ECB", iv=None) -> bytes:
+	return encrypt(encrypted, key, mode=mode, encryption=False, iv=iv)
 
 def print_keys(keys: list) -> list:
 	print("="*30)

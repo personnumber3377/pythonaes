@@ -30,6 +30,8 @@ def run_tests() -> None:
 	test_list_to_bytes()
 	test_not_test_vec()
 	test_encrypt_cbc()
+	test_decrypt_cbc()
+	test_encrypt_decrypt_cbc_no_test_vec()
 	print("All tests passed!!!")
 	print("="*30)
 	print("="*30)
@@ -279,17 +281,43 @@ def test_encrypt_cbc() -> None: # Cipher Block Chaining mode.
 	# See https://github.com/ircmaxell/quality-checker/blob/master/tmp/gh_18/PHP-PasswordLib-master/test/Data/Vectors/aes-cbc.test-vectors for the CBC test vectors.
 	assert encrypt_helper("6bc1bee22e409f96e93d7e117393172a", "2b7e151628aed2a6abf7158809cf4f3c", "7649abac8119b246cee98e9b12e9197d", mode="CBC", iv="000102030405060708090A0B0C0D0E0F") # 128 bit keysize.
 
+def test_decrypt_cbc() -> None: # Cipher Block Chaining decryption.
+	assert decrypt_helper("7649abac8119b246cee98e9b12e9197d","2b7e151628aed2a6abf7158809cf4f3c", "6bc1bee22e409f96e93d7e117393172a", mode="CBC", iv="000102030405060708090A0B0C0D0E0F")
+
+def test_encrypt_decrypt_cbc_no_test_vec() -> None:
+	# This tests the encryption and decryption with cbc mode and with the same initialization vector.
+	sample_iv = "000102030405060708090A0B0C0D0E0F"
+	sample_plaintext = bytes.fromhex("41424344") # ascii "ABCD"
+	plain_copy = copy.deepcopy(sample_plaintext)
+	sample_key = bytes.fromhex("41414141") # Key is "AAAA"
+	encrypted = encrypt(sample_plaintext, sample_key, mode="CBC", iv=bytes.fromhex(sample_iv))
+	print("Here is the encrypted \"ABCD\" : "+str(print_hex(encrypted)))
+	decrypted = decrypt(encrypted, sample_key, mode="CBC", iv=bytes.fromhex(sample_iv))
+	# Cut out padding.
+	decrypted = decrypted[:decrypted.index(0x00)]
+	print("Here is the decrypted bytes: "+str(decrypted))
+	assert decrypted == plain_copy
+	print("test_encrypt_decrypt_cbc_no_test_vec passed!!!")
+	return
+
+
 def encrypt_helper(data: str, key: str, expected_result: str, mode="ECB", iv=None) -> bool: # Returns true if passed.
 	example_plaintext = bytes.fromhex(data)
 	key_bytes = bytes.fromhex(key)
+	if iv != None:
+		iv = bytes.fromhex(iv)
 	encrypted = encrypt(example_plaintext, key_bytes, mode=mode, iv=iv) # Just Electronic Code Book, for now.
 	print("encrypted == "+str(print_hex(encrypted)))
 	return encrypted == bytes.fromhex(expected_result) # Check.
 
-def decrypt_helper(data: str, key: str, expected_result: str, mode="ECB") -> bool:# Returns true if passed.
+def decrypt_helper(data: str, key: str, expected_result: str, mode="ECB", iv=None) -> bool:# Returns true if passed.
 	example_plaintext = bytes.fromhex(data)
 	key_bytes = bytes.fromhex(key)
-	decrypted = decrypt(example_plaintext, key_bytes, mode=mode) # Just Electronic Code Book, for now.
+	if iv != None:
+		iv = bytes.fromhex(iv)
+	decrypted = decrypt(example_plaintext, key_bytes, mode=mode, iv=iv) # Just Electronic Code Book, for now.
+	assert decrypted != None # Sanity
+	print(print_hex(decrypted))
 	return decrypted == bytes.fromhex(expected_result) # Check.
 
 def test_enc() -> None:
