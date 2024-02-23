@@ -359,7 +359,7 @@ def poly_mod(dividend: int, divisor: int) -> int:
 		diff -= 1
 	return dividend
 
-def poly_mul(a: int, b: int) -> int: # This function multiplies the polynomial a with b in G(2) and then modulo x**8 + x**4 + x**3 + x**2 + x + 1.
+def poly_mul(a: int, b: int, divisor=0x11B) -> int: # This function multiplies the polynomial a with b in G(2) and then modulo x**8 + x**4 + x**3 + x**2 + x + 1.
 	out = 0
 	k = b
 	while k: # This basically shifts left and then if the current bit is a one, then xor the current thing with the thing.
@@ -371,10 +371,12 @@ def poly_mul(a: int, b: int) -> int: # This function multiplies the polynomial a
 		k >>= 1
 	# Now modulo in polynomial in GF(2) # See https://en.wikipedia.org/wiki/Finite_field_arithmetic#Rijndael's_(AES)_finite_field
 	#print("passing "+str(hex(out))+" to poly mod.")
-	out = poly_mod(out, 0x11B)
+	out = poly_mod(out, divisor)
 	#print("result is this: "+str(hex(out)))
-	assert out < 0x11B
-	assert out < 256
+	assert out < divisor
+	if divisor == 0x11B:
+
+		assert out < 256
 	return out
 
 def rev_mix_column(r: list) -> list: # This is used in InvMixColumns.
