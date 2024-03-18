@@ -17,25 +17,62 @@ def E_K(data: bytes, key: bytes) -> bytes: # This is the E_K function. This is b
     # encrypt(data: bytes, key: bytes, mode="ECB", encryption=True, iv=None)
     return encrypt(data, key, mode="ECB", encryption=True, iv=None) # Just use the ECB mode for now, I assume that OCB1 uses ECB.
 
+def R(N: bytes, key: bytes) -> bytes: # N is the nonce
+    # R = E_K(N XOR L)
+    return E_K(xor_bytes(N, L0(key)), key) # Data is not used in generating R.
 
 
 def L0(key: bytes) -> bytes: # This is L(0) = L = E_K(0^n)
     # Just encrypt a lot of zeroes with the specified key.
     return E_K(bytes([0 for _ in range(16)]), key)
 
-def L(i: int, key: bytes, cur_L_list: list) -> bytes: # This creates the L(i) thing. This is used in generating the Z list.
+def L(i: int, key: bytes, prev_L=None) -> bytes: # This creates the L(i) thing. This is used in generating the Z list.
     if i == 0:
         return L0(key)
     else:
         # get the previous element.
-        return 
-def Z() -> list: # This generates the Z array.
+        assert prev_L != None
+        return poly_mul(2, prev_L, divisor=0x100000000000000000000000000000085) # 0x100000000000000000000000000000085 aka x^128 + x^7 + x^2 + 1
 
+def Z(i: int, key: bytes, N: bytes, prev_Z=None, prev_L=None) -> list: # This generates the Z array.
+    print("i inside Z: "+str(i))
+    if i == 0: # Z[1]
+        
+        return L0(key), xor_bytes(L0(key), R(N,key))
+    else: # Z[i]
+        assert prev_Z != None # We should define the previous Z value.
+        assert prev_L != None
 
+        return L(ntz(i), key, prev_L=prev_L), xor_bytes(prev_Z, L(ntz(i), key, prev_L=prev_L)) # Z(i - 1) XOR L(ntz(i))
+
+def generate_Z_list(m: int, key: bytes, N: bytes) -> tuple: # m is the number of data blocks.
+    out_Z_list = []
+    out_L_list = []
+    for i in range(m+1):
+        print("i == "+str(i))
+        if i == 0:
+
+            new_L, new_Z = Z(0, key, N, prev_Z=None, prev_L=None)
+            out_L_list.append(new_L)
+            out_Z_list.append(new_Z)
+        else:
+            print("in the else case: "+str(i))
+            print("out_L_list[-1] == "+str(print_hex(out_L_list[-1]))) # I think the first out_L_list is correct.
+            print("out_Z_list[-1] == "+str(print_hex(out_Z_list[-1]))) # 
+            new_L, new_Z = Z(i, key, N, prev_Z=out_Z_list[-1], prev_L=out_L_list[-1])
+            print("print_hex(new_L) == "+str(print_hex(new_L)))
+            print("print_hex(new_Z) == "+str(print_hex(new_Z)))
+            assert print_hex(out_Z_list[-1]) != print_hex(new_Z)
+            out_L_list.append(new_L)
+            out_Z_list.append(new_Z)
+    return out_L_list, out_Z_list # Return L, and Z
+
+def generate_nonce() -> bytes: # Basically generates a random sequence of 16 bytes. (NOTE: NOT CRYPTOGRAPHICALLY SECURE!!!!)
+    return bytes([random.randrange(0,256) for _ in range(16)])
 
 # Here is the OCBv1 encryption function.
 # def encrypt(data: bytes, key: bytes, mode="ECB", encryption=True, iv=None) -> bytes:
-def ocb_ver_1_encrypt(data: bytes, key: bytes) -> bytes:
+def ocb_ver_1_encrypt(data: bytes, key: bytes, nonce=None, test=False) -> bytes:
     '''
     The  message  M  to  be encrypted  and  authenticated  is  divided  into  n-bit  blocks,  with  the  exception of  the  last  block,  which  may  be  less  than  n  bits.  Typically,  n = 128.  Only  a single  pass  through  the  message  is  required  to  generate  both  the  ciphertext and the  authentication code.  The total number  of blocks is  m = dlen(M)/ne.
     '''
@@ -60,6 +97,23 @@ def ocb_ver_1_encrypt(data: bytes, key: bytes) -> bytes:
     # L(i) = 2* L(i - 1)
     # Z[1] = L XOR R # I don't know if
     # Z[i] = Z(i - 1) XOR L(ntz(i))
+
+    # generate_Z_list(m: int, key: bytes, N: bytes) -> tuple:
+
+    # num_rounds, expanded_key, reverse_keys = key_expansion(key, version) # Use the 192 bit version instead of the 128
+
+    num_rounds, expanded_key, reverse_keys = key_expansion(key, version) # Use the 192 bit version instead of the 128
+    m = math.ceil(len(data)/((int(version))//8)) # m = ceil(len(M)/n) , where n is the version integer.
+    if nonce == None: # Check for assigned nonce
+        nonce = generate_nonce() # Just create random bytes.
+    L_list, Z_list = generate_Z_list(m, key, nonce)
+    print("Here is the L list: "+str(L_list))
+    print("Here is the Z list: "+str(Z_list))
+    print("L list as printed hex: "+str(print_hex(L_list)))
+    print("Z list as printed hex: "+str(print_hex(Z_list)))
+    return L_list, Z_list # Stub for now.
+    # c6a13b37878f5b826f4f8162a1c8d879c6a13b37878f5b826f4f8162a1c8d879
+
 
 def main_ocb() -> int:
     run_tests_ocb()
